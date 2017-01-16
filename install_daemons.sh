@@ -1,5 +1,5 @@
 
-git clone https://github.com/postgres/postres.git
+git clone https://github.com/postgres/postgres.git
 cd postgres
 git checkout REL9_5_STABLE
 ./configure
