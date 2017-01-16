@@ -1,4 +1,4 @@
-
+cd ..
 curl -O http://mirrors.gigenet.com/apache//httpd/httpd-2.4.25.tar.gz
 gunzip httpd-2.4.25.tar.gz
 tar xf httpd-2.4.25.tar
