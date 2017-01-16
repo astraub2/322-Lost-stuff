@@ -1,11 +1,9 @@
-cd ..
+
 git clone https://github.com/postgres/postres.git
 cd postgres
 git checkout REL9_5_STABLE
 ./configure
 mkdir build_dir
-cd build_dir
-cd ..
 make
 make install DESTDIR=/home/osnapdev
 
