@@ -69,6 +69,6 @@ level_fk INT,
 compartments_fk INT,
 user_fk INT,
 product_fk INT,
-asset_fk, INT);
+asset_fk INT);
 
 
