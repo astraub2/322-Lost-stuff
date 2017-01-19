@@ -62,12 +62,13 @@ create table compartments
 (compartment_pk INT,
 abbrv varchar(255),
 comment varchar(255));
+
 create table security_tags
 (tag_pk INT,
 level_fk INT,
 compartments_fk INT,
 user_fk INT,
-product_fk, INT,
-asset_fk, INT);
+product_fk INT,
+asset_fk INT);
 
 
