@@ -12,10 +12,9 @@ with open('acquisitions.csv', newline='') as csvfile:
      spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
      next(spamreader)
      for p in spamreader:
-         print(p[1])
-##         format_str2 ="""INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description)
-##         VALUES (NULL, NULL, "{asset_tag}", "{description}");"""
-##         sql_command2= format_str2.format(asset_tag=p[8], description=p[0])
+         format_str2 ="""INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description)
+         VALUES (NULL, NULL, "{asset_tag}", "{description}");"""
+         sql_command2= format_str2.format(asset_tag=p[5], description=p[0])
 ##with open('convoy.csv', newline='') as csvfile:
 ##    ##transport request #,depart time,waypoint1 time,waypoint 2 time,
 ##    ##waypoint 3 time,waypoint 4 time,arrive time,assigned vehicles
@@ -118,4 +117,4 @@ with open('acquisitions.csv', newline='') as csvfile:
 ##         cursor.execute(sql_command1)
 ##        
 ####vendors
-##
+
