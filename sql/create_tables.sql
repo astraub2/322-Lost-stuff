@@ -1,74 +1,74 @@
 create table products
-(product_pk INT,
+(product_pk serial primary key,
  vendor varchar(255),
  description varchar(255),
  alt_description varchar(255));
 
 create table assets
-(assets_pk INT,
- product_fk INT,
+(assets_pk serial primary key,
+ product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
  asset_tag varchar(255),
  alt_description varchar(255));
 
 create table vehicles
-(vehicle_pk INT,
+(vehicle_pk serial primary key,
 asset_fk INT);
 
 create table facilities
-(facilities_pk INT,
+(facilities_pk serial primary key,
 fcode varchar(255),
 common_name varchar(255),
 location varchar(255));
 
 create table asset_at
 	(asset_fk INT,
-		facility_fk INT,
+		facility_fk integer REFERENCES facilities (facility_pk) not null DEFAULT 1,
 		arrive_dt TIMESTAMP,
 		depart_dt TIMESTAMP);
 create table convoys
-	(convoy_pk INT,
+	(convoy_pk serial primary key,
 		request varchar(255),
-		source_fk INT,
-		dest_fk INT,
+		source_fk integer REFERENCES sources (sources_pk) not null DEFAULT 1,
+		dest_fk integer REFERENCES dest (dest_pk) not null DEFAULT 1,
 		depart_dt TIMESTAMP,
 		arrive_dt TIMESTAMP);
 create table used_by
-	(vehicle_fk INT,
-		convoy_fk INT);
+	(vehicle_fk integer REFERENCES vehicles (vehicle_pk) not null DEFAULT 1,
+		convoy_fk integer REFERENCES convoys (convoy_pk) not null DEFAULT 1);
 create table asset_on
-	(asset_fk INT,
-		convoy_fk INT,
+	(asset_fk integer REFERENCES assets (asset_pk) not null DEFAULT 1,
+		convoy_fk integer REFERENCES convoys (convoy_pk) not null DEFAULT 1,
 		load_dt  TIMESTAMP,
 		unload_dt TIMESTAMP);
 create table users
-(user_pk INT,
+(user_pk serial primary key,
 username varchar(255),
 active BOOLEAN);
 create table roles
-(role_pk INT,
+(role_pk serial primary key,
 username varchar(255),
 active BOOLEAN);
 create table user_is
 (user_fk INT,
-role_fk INT);
+role_fk integer REFERENCES roles (role_pk) not null DEFAULT 1);
 create table user_supports
-(user_fk INT,
-facility_fk INT);
+(user_fk integer REFERENCES users (user_pk) not null DEFAULT 1,
+facility_fk integer REFERENCES facilities (facility_pk) not null DEFAULT 1);
 create table levels
-(level_pk INT,
+(level_pk serial primary key,
 abbrv varchar(255),
 comment varchar(255));
 create table compartments
-(compartment_pk INT,
+(compartment_pk serial primary key,
 abbrv varchar(255),
 comment varchar(255));
 
 create table security_tags
-(tag_pk INT,
-level_fk INT,
-compartments_fk INT,
-user_fk INT,
-product_fk INT,
-asset_fk INT);
+(tag_pk serial primary key,
+level_fk integer REFERENCES levels (level_pk) not null DEFAULT 1,
+compartments_fk integer REFERENCES compartments (compartment_pk) not null DEFAULT 1,
+user_fk integer REFERENCES users (user_pk) not null DEFAULT 1,
+product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
+asset_fk integer REFERENCES assets (asset_pk) not null DEFAULT 1);
 
 
