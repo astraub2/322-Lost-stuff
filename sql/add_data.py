@@ -104,7 +104,7 @@ with open('security_levels.csv', newline='') as csvfile:
      for p in spamreader:
          format_str1 = """INSERT INTO levels (level_pk, abbrv, comment)
          VALUES (NULL,"{abbrv}", "{comment}");"""
-         sql_command1 = format_str1.format(abbrv[1]=p[1], comment=p[2])
+         sql_command1 = format_str1.format(abbrv=p[1], comment=p[2])
          cursor.execute(sql_command1)
 ##transit
 with open('transit.csv', newline='') as csvfile:
