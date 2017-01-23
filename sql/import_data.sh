@@ -5,4 +5,4 @@ pg_ctl -D $HOME/data -l $HOME/logfile start
 createdb lost_db
 psql -d lost_db -a -f create_tables.sql
 path=/osnap_legacy
-python3 add_stuff.py
+python3 add_data.py
