@@ -15,7 +15,7 @@ with open('acquisitions.csv', newline='') as csvfile:
          #print(', '.join(p))
          format_str2 ="""INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description)
          VALUES (NULL, NULL, "{asset_tag}", "{alt_description}");"""
-         sql_command2= format_str2.format(asset_tag=p[5], description=p[0])
+         sql_command2= format_str2.format(asset_tag=p[4], description=p[0])
 with open('convoy.csv', newline='') as csvfile:
     ##transport request #,depart time,waypoint1 time,waypoint 2 time,
     ##waypoint 3 time,waypoint 4 time,arrive time,assigned vehicles
