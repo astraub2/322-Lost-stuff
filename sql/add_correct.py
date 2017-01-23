@@ -9,7 +9,7 @@ cursor = conn.cursor()
 with open('acquisitions.csv', newline='') as csvfile:
     #parameters :product,purchase, order, number,order,
     #date,ship, date,arrive, date,asset, tag
-     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+     spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
      next(spamreader)
      for p in spamreader:
          print(p[1])
