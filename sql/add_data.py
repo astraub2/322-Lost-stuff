@@ -25,7 +25,7 @@ with open('convoy.csv', newline='') as csvfile:
      for p in spamreader:
          format_str1 = """INSERT INTO convoy (convoy_pk, request,source_fk, dest_fk, depart_dt, arrive_dt)
          VALUES (NULL, "{request}", NULL, NULL, "{depart_dt}", "{arrive_dt}");"""
-         sql_command1 = format_str1.format(request=p[0], depart_dt=p[1], arrive_dt=p[6]) )
+         sql_command1 = format_str1.format(request=p[0], depart_dt=p[1], arrive_dt=p[6])
          cursor.execute(sql_command1)
 with open('DC_inventory.csv', newline='') as csvfile:
     ##asset tag,product,room,compartments,intake date,expunged date
