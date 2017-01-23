@@ -1,6 +1,6 @@
 import csv
 import sqlite3
-connection = sqlite3.connect("lost.db")
+connection = sqlite3.connect("lost_db")
 
 cursor = connection.cursor()
 with open('acquisitions.csv', newline='') as csvfile:
