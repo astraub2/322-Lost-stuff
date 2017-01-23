@@ -10,7 +10,7 @@ with open('acquisitions.csv', newline='') as csvfile:
      next(spamreader)
      for p in spamreader:
          #print(', '.join(p))
-         format_str1 = """INSERT INTO product (product_pk, vendor, description, alt_description)
+         format_str1 = """INSERT INTO products (product_pk, vendor, description, alt_description)
          VALUES (NULL, NULL, "{description}", NULL);"""
          sql_command1 = format_str1.format(description=p[0])
          cursor.execute(sql_command1)
