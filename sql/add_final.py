@@ -91,8 +91,8 @@ def SPNV_inventory(counter):
 
 def main():
     counter=0
-    DC_inventory(counter)
-    HQ_inventory(counter)
+    counter=DC_inventory(counter)
+    counter=HQ_inventory(counter)
 ##    MB005_inventory(counter)
 ##    NC_inventory(counter)
 ##    SPNV_inventory(counter)
