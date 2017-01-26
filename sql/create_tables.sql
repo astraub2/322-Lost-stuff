@@ -3,7 +3,7 @@ create table products
  vendor varchar(255),
  description varchar(255),
  alt_description varchar(255));
-
+)
 create table assets
 (assets_pk int,
  product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
@@ -28,7 +28,7 @@ create table asset_at
 create table convoys
 	(convoy_pk serial primary key,
 		request varchar(255),
-		source_fk integer REFERENCES sources (sources_pk) not null DEFAULT 1,
+		source_fk integer,
 		dest_fk integer REFERENCES dest (dest_pk) not null DEFAULT 1,
 		depart_dt TIMESTAMP,
 		arrive_dt TIMESTAMP);
@@ -53,7 +53,7 @@ create table user_is
 role_fk integer REFERENCES roles (role_pk) not null DEFAULT 1);
 create table user_supports
 (user_fk integer REFERENCES users (user_pk) not null DEFAULT 1,
-facility_fk integer REFERENCES facilities (facility_pk) not null DEFAULT 1);
+facility_fk integer DEFAULT 1);
 create table levels
 (level_pk serial primary key,
 abbrv varchar(255),
