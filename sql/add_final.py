@@ -6,11 +6,11 @@ def DC_inventory(counter):
         print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (1,'DC');")
             
         for p in spamreader:
-            asset_tag=("%s",p[0])
-            alt_description=("%s",p[1])
-            product=("%s",p[1])
-            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
+            asset_tag=(p[0])
+            alt_description=(p[1])
+            product=(p[1])
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, '%s', '%s');" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 1);" % (counter))
             counter+=1
         return counter
@@ -22,11 +22,11 @@ def HQ_inventory(counter):
         next(spamreader)
         print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (2, 'HQ');")
         for p in spamreader:
-            asset_tag=("%s",p[0])
-            alt_description=("%s",p[1])
-            product=("%s",p[1])
-            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
+            asset_tag=(p[0])
+            alt_description=(p[1])
+            product=(p[1])
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, '%s', '%s');" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 2);" % (counter))
             counter+=1
         return counter
@@ -37,11 +37,11 @@ def MB005_inventory(counter):
         print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (3,'MB005');")
         
         for p in spamreader:
-            asset_tag=("%s",p[0])
-            alt_description=("%s",p[1])
-            product=("%s",p[1])
-            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
+            asset_tag=(p[0])
+            alt_description=(p[1])
+            product=(p[1])
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, '%s', '%s');" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 3);" % (counter))
             counter+=1
         return counter
@@ -52,11 +52,11 @@ def NC_inventory(counter):
         print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (4,'NC');")
         
         for p in spamreader:
-            asset_tag=("%s",p[0])
-            alt_description=("%s",p[1])
-            product=("%s",p[1])
-            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
+            asset_tag=(p[0])
+            alt_description=(p[1])
+            product=(p[1])
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, '%s', '%s');" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 4);" % (counter))
             counter+=1
         return counter
@@ -68,11 +68,11 @@ def SPNV_inventory(counter):
         print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (5,'SPNV';)")
         
         for p in spamreader:
-            asset_tag=("%s",p[0])
-            alt_description=("%s",p[1])
-            product=("%s",p[1])
-            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
+            asset_tag=(p[0])
+            alt_description=(p[1])
+            product=(p[1])
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, '%s', '%s');" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 5);" % (counter))
             counter+=1
         return counter
