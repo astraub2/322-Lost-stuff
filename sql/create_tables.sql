@@ -29,7 +29,7 @@ create table convoys
 	(convoy_pk serial primary key,
 		request varchar(255),
 		source_fk integer,
-		dest_fk integer REFERENCES dest (dest_pk) not null DEFAULT 1,
+		dest_fk integer null DEFAULT 1,
 		depart_dt TIMESTAMP,
 		arrive_dt TIMESTAMP);
 create table used_by
