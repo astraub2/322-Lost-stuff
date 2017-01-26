@@ -25,9 +25,9 @@ def HQ_inventory(counter):
             asset_tag=("%s",p[0])
             alt_description=("%s",p[1])
             product=("%s",p[1])
-            print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
-            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 2);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 2);" % (counter))
             counter+=1
         return counter
 def MB005_inventory(counter):
@@ -40,9 +40,9 @@ def MB005_inventory(counter):
             asset_tag=("%s",p[0])
             alt_description=("%s",p[1])
             product=("%s",p[1])
-            print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
-            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 3);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 3);" % (counter))
             counter+=1
         return counter
 def NC_inventory(counter):
@@ -55,9 +55,9 @@ def NC_inventory(counter):
             asset_tag=("%s",p[0])
             alt_description=("%s",p[1])
             product=("%s",p[1])
-            print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
-            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 4);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 4);" % (counter))
             counter+=1
         return counter
 
@@ -71,9 +71,9 @@ def SPNV_inventory(counter):
             asset_tag=("%s",p[0])
             alt_description=("%s",p[1])
             product=("%s",p[1])
-            print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
+            print( "INSERT INTO assets (assets_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
-            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 5);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 5);" % (counter))
             counter+=1
         return counter
 ##def acquisitions():
