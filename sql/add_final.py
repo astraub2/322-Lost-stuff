@@ -65,7 +65,7 @@ def SPNV_inventory(counter):
  with open('SPNV_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (5,'SPNV';)")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (5,'SPNV')")
         
         for p in spamreader:
             asset_tag=(p[0])
