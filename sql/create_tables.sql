@@ -6,7 +6,7 @@ create table products
 
 create table assets
 (assets_pk int,
- product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
+ product_fk integer not null DEFAULT 1,
  asset_tag varchar(255),
  alt_description varchar(255));
 
@@ -17,7 +17,7 @@ asset_fk INT);
 create table facilities
 (facilities_pk int,
 fcode varchar(255),
-common_name varchar(255),Sel
+common_name varchar(255),
 location varchar(255));
 
 create table asset_at
