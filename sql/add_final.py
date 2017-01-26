@@ -7,8 +7,8 @@ def DC_inventory(counter):
             
         for p in spamreader:
             asset_tag=p[0]
-            alt_description=p[1]
-            product=p[1]
+            alt_description=("%s",p[1])
+            product=("%s",p[1])
             print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
             print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 1);" % (counter))
