@@ -91,7 +91,7 @@ def main():
     counter=0
     counter=DC_inventory(counter)
     counter=HQ_inventory(counter)
-##    MB005_inventory(counter)
+    MB005_inventory(counter)
 ##    NC_inventory(counter)
 ##    SPNV_inventory(counter)
 ##    acquisitions()
