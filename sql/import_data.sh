@@ -6,4 +6,5 @@ createdb lost_db
 psql -d lost_db -a -f create_tables.sql
 cd osnap_legacy
 
-python3 ../add_data.py
+python3 ../add_final.py >output.sql
+psql -d lost_db -a -f output.sql

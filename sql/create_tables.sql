@@ -1,11 +1,11 @@
 create table products
-(product_pk serial primary key,
+(product_pk int,
  vendor varchar(255),
  description varchar(255),
  alt_description varchar(255));
 
 create table assets
-(assets_pk serial primary key,
+(assets_pk int,
  product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
  asset_tag varchar(255),
  alt_description varchar(255));
@@ -15,14 +15,14 @@ create table vehicles
 asset_fk INT);
 
 create table facilities
-(facilities_pk serial primary key,
+(facilities_pk int,
 fcode varchar(255),
-common_name varchar(255),
+common_name varchar(255),Sel
 location varchar(255));
 
 create table asset_at
 	(asset_fk INT,
-		facility_fk integer REFERENCES facilities (facility_pk) not null DEFAULT 1,
+		facility_fk integer,
 		arrive_dt TIMESTAMP,
 		depart_dt TIMESTAMP);
 create table convoys
@@ -59,7 +59,7 @@ create table levels
 abbrv varchar(255),
 comment varchar(255));
 create table compartments
-(compartment_pk serial primary key,
+(compartment_pk integer,
 abbrv varchar(255),
 comment varchar(255));
 
