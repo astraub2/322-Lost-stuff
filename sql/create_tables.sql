@@ -3,7 +3,7 @@ create table products
  vendor varchar(255),
  description varchar(255),
  alt_description varchar(255));
-)
+
 create table assets
 (assets_pk int,
  product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
@@ -36,7 +36,7 @@ create table used_by
 	(vehicle_fk integer REFERENCES vehicles (vehicle_pk) not null DEFAULT 1,
 		convoy_fk integer REFERENCES convoys (convoy_pk) not null DEFAULT 1);
 create table asset_on
-	(asset_fk integer REFERENCES assets (asset_pk) not null DEFAULT 1,
+	(asset_fk integer DEFAULT 1,
 		convoy_fk integer REFERENCES convoys (convoy_pk) not null DEFAULT 1,
 		load_dt  TIMESTAMP,
 		unload_dt TIMESTAMP);
