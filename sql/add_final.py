@@ -3,7 +3,7 @@ def DC_inventory(counter):
     with open('DC_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (1,'DC')")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (1,'DC');")
             
         for p in spamreader:
             asset_tag=p[0]
@@ -11,16 +11,16 @@ def DC_inventory(counter):
             product=p[1]
             print( "INSERT INTO assets (asset_pk, asset_tag, alt_description) VALUES (%s, %s, %s);" % (counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, %s);" % (counter, product))
-##            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 1);" % (counter))
-##            counter+=1
-##        return counter
+            print( "INSERT INTO assets_at (asset_fk, facility_fk) VALUES (%s, 1);" % (counter))
+            counter+=1
+        return counter
             
 
 def HQ_inventory(counter):
      with open('HQ_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (2, 'HQ')")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (2, 'HQ');")
         for p in spamreader:
             asset_tag=p[0]
             alt_description=p[1]
@@ -34,7 +34,7 @@ def MB005_inventory(counter):
      with open('MB005_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (3,'MB005')")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (3,'MB005');")
         
         for p in spamreader:
             asset_tag=p[0]
@@ -49,7 +49,7 @@ def NC_inventory(counter):
      with open('HQ_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (4,'NC')")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (4,'NC');")
         
         for p in spamreader:
             asset_tag=p[0]
@@ -65,7 +65,7 @@ def SPNV_inventory(counter):
  with open('SPNV_inventory.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
-        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (5,'SPNV')")
+        print( "INSERT INTO facilities (facilities_pk, common_name) VALUES (5,'SPNV';)")
         
         for p in spamreader:
             asset_tag=p[0]
