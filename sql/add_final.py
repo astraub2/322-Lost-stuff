@@ -9,10 +9,12 @@ def DC_inventory(counter):
             asset_tag=(p[0])
             alt_description=(p[1])
             product=(p[1])
+            intake=p[4]
+
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             ##add arrival and depart times to asset_at
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 1);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
             counter+=1
         return counter
             
@@ -28,8 +30,8 @@ def HQ_inventory(counter):
             product=(p[1])
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 2);" % (counter))
-            counter+=1
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+             counter+=1
         return counter
 def MB005_inventory(counter):
      with open('MB005_inventory.csv', newline='') as csvfile:
