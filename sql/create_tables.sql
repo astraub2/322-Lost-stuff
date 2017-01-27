@@ -65,10 +65,10 @@ comment varchar(255));
 
 create table security_tags
 (tag_pk serial primary key,
-level_fk integer REFERENCES levels (level_pk) not null DEFAULT 1,
+level_fk integer not null DEFAULT 1,
 compartments_fk integer not null DEFAULT 1,
-user_fk integer REFERENCES users (user_pk) not null DEFAULT 1,
-product_fk integer REFERENCES products (product_pk) not null DEFAULT 1,
-asset_fk integer REFERENCES assets (asset_pk) not null DEFAULT 1);
+user_fk integer not null DEFAULT 1,
+product_fk integer not null DEFAULT 1,
+asset_fk integer not null DEFAULT 1);
 
 
