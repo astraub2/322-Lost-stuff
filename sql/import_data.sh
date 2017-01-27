@@ -1,4 +1,4 @@
-//get the legacy data  using curl, unzip it etc
+
 mkdir data
 initdb -D $HOME/data
 pg_ctl -D $HOME/data -l $HOME/logfile start
