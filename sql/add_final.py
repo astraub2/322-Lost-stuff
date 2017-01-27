@@ -184,8 +184,8 @@ def main():
 ##    counter=acquisitions(counter)
     counter=convoy(counter)
     counter=product_list(counter)
-##    security_levels()
-##    transit()
+    security_levels()
+    transit()
   
   
 if __name__== "__main__":
