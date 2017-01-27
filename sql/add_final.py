@@ -172,7 +172,7 @@ def main():
     facilities()
     counter=0
     counter=DC_inventory(counter)
-##    counter=HQ_inventory(counter)
+    counter=HQ_inventory(counter)
 ##    counter=MB005_inventory(counter)
 ##    counter=NC_inventory(counter)
 ##    counter=SPNV_inventory(counter)
