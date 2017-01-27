@@ -112,7 +112,7 @@ def convoy(counter):
                 alt_description=p[i]
                 product=p[i]
                 print( "INSERT INTO assets (assets_pk, product_fk, alt_description) VALUES (%s,%s, '%s');" % (counter, counter,alt_description))
-                print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
+                ##print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
                 i+=1
                 counter+=1
             ccnt+=1
@@ -135,7 +135,7 @@ def product_list(counter):
         for p in spamreader:
             name=(p[0])
             description=(p[1])
-            print( "INSERT INTO assets (assets_pk, product_fk, alt_description) VALUES (%s,'%s','%s');" % (counter, counter, description)) 
+            ##print( "INSERT INTO assets (assets_pk, product_fk, alt_description) VALUES (%s,'%s','%s');" % (counter, counter, description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, name))
             counter+=1
         return counter
