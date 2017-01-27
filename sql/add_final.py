@@ -149,22 +149,22 @@ def transit():
         ##I ran out of time to do this nicley
 
         print("UPDATE asset_at SET facility_pk=3 WHERE asset_pk=10;")
-        print("UPDATE asset_at SET facilities_pk=3 WHERE asset_tag=11;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_pk=12;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_pk=13;")
+        print("UPDATE asset_at SET facilities_pk=3 WHERE asset_pk=11;")
+        print("UPDATE asset_at SET facilities_pk=3 WHERE asset_pk=12;")
+        print("UPDATE asset_at SET facilities_pk=3 WHERE asset_pk=13;")
 
-        print("UPDATE asset_at.asset_fk SET facilities_pk=4 WHERE asset_pk=10;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=4 WHERE asset_pk=11;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=4 WHERE asset_pk=12;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=4 WHERE asset_pk=13;")
+        print("UPDATE asset_at SET facilities_pk=4 WHERE asset_pk=10;")
+        print("UPDATE asset_at SET facilities_pk=4 WHERE asset_pk=11;")
+        print("UPDATE asset_at SET facilities_pk=4 WHERE asset_pk=12;")
+        print("UPDATE asset_at SET facilities_pk=4 WHERE asset_pk=13;")
 
-        print("UPDATE asset_at.asset_fk SET facilities_pk=5 WHERE asset_pk=14;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=5 WHERE asset_pk=15;")
+        print("UPDATE asset_at SET facilities_pk=5 WHERE asset_pk=14;")
+        print("UPDATE asset_at SET facilities_pk=5 WHERE asset_pk=15;")
 
-        print("UPDATE asset_at.asset_fk SET facilities_pk=1 WHERE asset_pk=0;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=1 WHERE asset_pk=1;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=1 WHERE asset_pk=2;")
-        print("UPDATE asset_at.asset_fk SET facilities_pk=1 WHERE asset_pk=3;")
+        print("UPDATE asset_at SET facilities_pk=1 WHERE asset_pk=0;")
+        print("UPDATE asset_at SET facilities_pk=1 WHERE asset_pk=1;")
+        print("UPDATE asset_at SET facilities_pk=1 WHERE asset_pk=2;")
+        print("UPDATE asset_at SET facilities_pk=1 WHERE asset_pk=3;")
         
         
         
