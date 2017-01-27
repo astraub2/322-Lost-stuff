@@ -12,7 +12,6 @@ def DC_inventory(counter):
             intake=p[4]
 
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
-            ##add arrival and depart times to asset_at
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
             counter+=1
@@ -28,6 +27,7 @@ def HQ_inventory(counter):
             asset_tag=(p[0])
             alt_description=(p[1])
             product=(p[1])
+            intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
@@ -43,10 +43,11 @@ def MB005_inventory(counter):
             asset_tag=(p[0])
             alt_description=(p[1])
             product=(p[1])
+            intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 3);" % (counter))
-            counter+=1
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+           counter+=1
         return counter
 def NC_inventory(counter):
      with open('HQ_inventory.csv', newline='') as csvfile:
@@ -58,9 +59,10 @@ def NC_inventory(counter):
             asset_tag=(p[0])
             alt_description=(p[1])
             product=(p[1])
+            intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 4);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
             counter+=1
         return counter
 
@@ -74,9 +76,10 @@ def SPNV_inventory(counter):
             asset_tag=(p[0])
             alt_description=(p[1])
             product=(p[1])
+            intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk) VALUES (%s, 5);" % (counter))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
             counter+=1
         return counter
     
