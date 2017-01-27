@@ -30,7 +30,7 @@ def HQ_inventory(counter):
             intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 2, '%s');" % (counter, intake))
             counter+=1
         return counter
 def MB005_inventory(counter):
@@ -46,7 +46,7 @@ def MB005_inventory(counter):
             intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 3, '%s');" % (counter, intake))
             counter+=1
         return counter
 def NC_inventory(counter):
@@ -62,7 +62,7 @@ def NC_inventory(counter):
             intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 4, '%s');" % (counter, intake))
             counter+=1
         return counter
 
@@ -79,7 +79,7 @@ def SPNV_inventory(counter):
             intake=p[4]
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
+            print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 5, '%s');" % (counter, intake))
             counter+=1
         return counter
     
