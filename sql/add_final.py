@@ -83,23 +83,6 @@ def SPNV_inventory(counter):
             counter+=1
         return counter
     
-def acquisitions(counter):
-   with open('acquisitions.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        next(spamreader)
-        for p in spamreader:
-            asset_tag=p[5]
-            alt_description=(p[0])
-            product=(p[0])
-            print("IF NOT EXISTS ( SELECT * FROM assets WHERE asset_tag= '%s'" %(asset_tag))
-            print("BEGIN")
-            print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
-            print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
-            print("END")
-            counter+=1
-
-        return counter
-   
 def convoy(counter):
     ccnt=0
     with open('convoy.csv', newline='') as csvfile:
@@ -183,7 +166,6 @@ def main():
     counter=MB005_inventory(counter)
     counter=NC_inventory(counter)
     counter=SPNV_inventory(counter)
-##    counter=acquisitions(counter)
     counter=convoy(counter)
     counter=product_list(counter)
     security_levels()
