@@ -47,7 +47,7 @@ def MB005_inventory(counter):
             print( "INSERT INTO assets (assets_pk, product_fk, asset_tag, alt_description) VALUES (%s,%s, '%s', '%s');" % (counter, counter, asset_tag, alt_description)) 
             print( "INSERT INTO products (product_pk, description) VALUES (%s, '%s');" % (counter, product))
             print( "INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES (%s, 1, '%s');" % (counter, intake))
-           counter+=1
+            counter+=1
         return counter
 def NC_inventory(counter):
      with open('HQ_inventory.csv', newline='') as csvfile:
