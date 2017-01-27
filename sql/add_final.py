@@ -147,7 +147,7 @@ def transit():
         next(spamreader)
         ##hardcode
 
-        print("UPDATE asset_at SET ADRESS facilities_pk=3 WHERE asset_tag='CA15467287';")
+        print("UPDATE asset_at SET facility_pk=3 WHERE asset_tag='CA15467287';")
 ##        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_tag='CA15467288';")
 ##        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_tag='CA15467289';")
 ##        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_tag='CA15467290';")
