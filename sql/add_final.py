@@ -182,8 +182,8 @@ def main():
     counter=NC_inventory(counter)
     counter=SPNV_inventory(counter)
     counter=acquisitions(counter)
-##    counter=convoy(counter)
-##    counter=product_list(counter)
+    counter=convoy(counter)
+    counter=product_list(counter)
 ##    security_levels()
 ##    transit()
   
