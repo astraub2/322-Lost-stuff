@@ -146,6 +146,7 @@ def transit():
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         next(spamreader)
         ##hardcode
+
         print("UPDATE asset_at.facilities_pk SET facilities_pk=3 WHERE asset_tag='CA15467287';")
 ##        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_tag='CA15467288';")
 ##        print("UPDATE asset_at.asset_fk SET facilities_pk=3 WHERE asset_tag='CA15467289';")
