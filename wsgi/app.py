@@ -2,32 +2,26 @@ from flask import Flask, render_template, session, redirect, url_for, escape, re
 
 app = Flask(__name__)
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    # the code below is executed if the request method
-    # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
-
 @app.route('/')
+def login():
+    return render_template('login.html')
+@app.route('/login')
+def loginagain():
+    return render_template('login.html')
+
+@app.route('/intransrep')
 def intransrep():
     return render_template('intransrep.html')
     
-@app.route('/')
+@app.route('/inventoryrep')
 def inventoryrep():
     return render_template('inventoryrep.html')
 
-@app.route('/')
+@app.route('/reportfs')
 def reportfs():
     return render_template('reportfs.html')
 
-@app.route('/')
+@app.route('/logout')
 def logout():
     return render_template('logout.html')
 
