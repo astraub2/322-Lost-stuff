@@ -2,13 +2,32 @@
 	<head><title>Report page</title></head>
 	<body><h1>Report Generator</h1>
 	<br>
-	Select a report type:
-	<br>
 	<p>
-	<b><a href="intransrep">Transit Report</a> &nbsp; 
-     <a href="inventoryrep">Inventory Report</a> &nbsp;
+	<form action = "/inventoryrep" method = "POST">
+         <p><h3>Inventory Report</h3></p>
+         <h4>Date:</h4>
+         <p><input type = 'text' name = 'idate'/></p>
+         
+
+         <h4>Facility:</h4>
+
+          <p><input type = 'text' name = 'facility'/></p>
+          <p><input type = 'submit' value = 'Enter'/></p>
+</form>
+---------------------------------------------------------------
+	<br>
+	
+	<form action = "/intransrep" method = "POST">
+         <p><h3>Transit Report</h3></p>
+         <h4>Date:</h4>
+         <p><input type = 'text' name = 'tdate'/></p>
+         <p><input type = 'submit' value = 'Enter'/></p>
+         
+</form> 
+     
     <br>
     <br>
+    <b><a href="/getcookie">Username</a> &nbsp; 
     <a href="logout">Logout</a> &nbsp; 
   </b>
 
