@@ -58,9 +58,6 @@ def inventoryrep():
    
     return resp
 
-# @app.route('/reportfs')
-# def reportfs():
-#     return render_template('reportfs.html')
 
 @app.route('/logout')
 def logout():
