@@ -1,4 +1,5 @@
-
+curl https://classes.cs.uoregon.edu//17W/cis322/files/osnap_legacy.tar.gz
+tar -xvzf osnap_legacy.tar.gz
 mkdir data
 initdb -D $HOME/data
 pg_ctl -D $HOME/data -l $HOME/logfile start

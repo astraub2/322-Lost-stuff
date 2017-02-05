@@ -65,7 +65,7 @@ def inventoryrep():
 def transbuilder(tdate):
     #command="SELECT * FROM transit WHERE date=%s"(tdate)
     try:
-        conn = psycopg2.connect("dbname='lost' user='osnapdev' host='localhost'")
+        conn = psycopg2.connect("dbname='lost' user='osnapdev' host='127.0.0.1' ")
     except:
         print ("I am unable to connect to the database")
     cur = conn.cursor()
@@ -80,7 +80,7 @@ def transbuilder(tdate):
 def invenbuilder(idate, facility):
     #command="SELECT * FROM transit WHERE date=%s"(tdate)
     try:
-        conn = psycopg2.connect("dbname='lost' user='osnapdev' host='localhost'")
+        conn = psycopg2.connect("dbname='lost' user='osnapdev' host='127.0.0.1' ")
     except:
         print ("I am unable to connect to the database")
     cur = conn.cursor()
