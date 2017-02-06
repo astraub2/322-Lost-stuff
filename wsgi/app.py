@@ -57,25 +57,47 @@ def inventoryrep():
     if request.method == 'POST':
         idate = request.form['idate']
         facility= request.form['facility']
-        
-        command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.asset_fk=assets.assets_pk WHERE asset_at.arrive_dt<='%s' AND asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(idate, facility)
-        try:
-            conn = psycopg2.connect("dbname=lost host='/tmp/'")
-        except psycopg2.Error as e:
-            print ("I am unable to connect to the database")
-            print (e)
-            print (e.pgcode)
-            print (e.pgerror)
-            print (traceback.format_exc())
-            
-        cur = conn.cursor()
-        cur.execute(command)
-        res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
-        processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
-        for r in res:
-            processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
-        session['processed_data_session_name'] = processed_data
-        resp = make_response(render_template('inventoryrep.html'))
+        if(idate=''):
+            command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.asset_fk=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
+            try:
+                conn = psycopg2.connect("dbname=lost host='/tmp/'")
+            except psycopg2.Error as e:
+                print ("I am unable to connect to the database")
+                print (e)
+                print (e.pgcode)
+                print (e.pgerror)
+                print (traceback.format_exc())
+                
+            cur = conn.cursor()
+            cur.execute(command)
+            res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
+            processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
+            for r in res:
+                processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
+            session['processed_data_session_name'] = processed_data
+            resp = make_response(render_template('inventoryrep.html'))
+
+
+
+        else:
+            command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.asset_fk=assets.assets_pk WHERE asset_at.arrive_dt<='%s' AND asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(idate, facility)
+            try:
+                conn = psycopg2.connect("dbname=lost host='/tmp/'")
+            except psycopg2.Error as e:
+                print ("I am unable to connect to the database")
+                print (e)
+                print (e.pgcode)
+                print (e.pgerror)
+                print (traceback.format_exc())
+                
+            cur = conn.cursor()
+            cur.execute(command)
+            res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
+            processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
+            for r in res:
+                processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
+            session['processed_data_session_name'] = processed_data
+            resp = make_response(render_template('inventoryrep.html'))
    
 
 
