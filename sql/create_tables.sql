@@ -38,8 +38,8 @@ create table used_by
 create table asset_on
 	(asset_fk integer DEFAULT 1,
 		convoy_fk integer REFERENCES convoys (convoy_pk) not null DEFAULT 1,
-		load_dt  int,
-		unload_dt int);
+		load_dt  TIMESTAMP,
+		unload_dt TIMESTAMP);
 create table users
 (user_pk serial primary key,
 username varchar(255),
