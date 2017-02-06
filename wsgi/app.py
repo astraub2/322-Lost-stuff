@@ -106,7 +106,7 @@ def inventoryrep():
 
 
 def transbuilder(tdate):
-    #command="SELECT * FROM transit WHERE date=%s"(tdate)
+    command="SELECT * FROM asset_on WHERE load_dt<=%s"(tdate)
     try:
         conn = psycopg2.connect("dbname=lost host='/tmp/'")
     except psycopg2.Error as e:
