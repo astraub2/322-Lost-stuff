@@ -2,9 +2,14 @@
 	<head><title>Inventory Report</title></head>
 	<body><h1>Inventory Report</h1>
 	<br>
-	Select Below for report:
-	<br>
-	<b><a href="/getinven">Inventory Report</a> &nbsp; 
+	<table>
+  {% for entry in session.processed_data_session_name %}
+  <tr>
+    <td>{{ entry.column_name1 }}</td>
+    <td>{{ entry.column_name2 }}</td>
+  </tr>
+  {% endfor %}
+</table> 
 	<br>
 	<p>
 	<br>
