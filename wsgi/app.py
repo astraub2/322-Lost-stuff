@@ -78,14 +78,12 @@ def transbuilder(tdate):
 
 
 def invenbuilder(idate, facility):
-    command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,"+
-            "asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.assets"+
-            "=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities"+
-            "WHERE common_name='%s')"(facility)
+    command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.assets=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
     try:
         conn = psycopg2.connect("dbname='lost' user='osnapdev' host='127.0.0.1' ")
     except:
         print ("I am unable to connect to the database")
+        
     cur = conn.cursor()
     cur.execute(command)
 ##    rows = cur.fetchall()
@@ -103,4 +101,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=8080)
