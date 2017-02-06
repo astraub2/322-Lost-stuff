@@ -130,6 +130,11 @@ def transit():
         next(spamreader)
         ##hardcode
         ##I ran out of time to do this nicley
+        print( "INSERT INTO asset_on (asset_fk, convoy_fk, load_dt, unload_dt) VALUES (0, 0, 1/10/17,1/10/17);")
+        print( "INSERT INTO asset_on (asset_fk, convoy_fk, load_dt, unload_dt) VALUES (1, 0, 1/10/17,1/10/17);")
+        print( "INSERT INTO asset_on (asset_fk, convoy_fk, load_dt, unload_dt) VALUES (2, 0, 1/10/17,1/10/17);")
+        print( "INSERT INTO asset_on (asset_fk, convoy_fk, load_dt, unload_dt) VALUES (3, 0, 1/10/17,1/10/17);")
+
 
         print("UPDATE asset_at SET facility_fk=3 WHERE asset_fk=10;")
         print("UPDATE asset_at SET facility_fk=3 WHERE asset_fk=11;")

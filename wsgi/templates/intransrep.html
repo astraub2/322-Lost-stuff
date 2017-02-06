@@ -2,9 +2,17 @@
 	<head><title>In Transit Report</title></head>
 	<body><h1>In Transit Report</h1>
 	<br>
-	Select Below for report:
-	<br>
-	<b><a href="/gettrans">Intransit Report</a> &nbsp; 
+	<table>
+  {% for entry in session.processed_data_session_name %}
+  <tr>
+    <td>{{ entry.column_name1 }}</td>
+    <td>{{ entry.column_name2 }}</td>
+    <td>{{ entry.column_name3 }}</td>
+    <td>{{ entry.column_name4 }}</td>
+
+  </tr>
+  {% endfor %}
+</table> 
 	<br>
 	<p>
 	<br>
