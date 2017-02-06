@@ -73,7 +73,7 @@ def inventoryrep():
         res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
         processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
         for r in res:
-            processed_data.append( dict(zip(('column_name1', 'column_name2'), r)) )  # just making a dict out of the tuples from res
+            processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
         session['processed_data_session_name'] = processed_data
         resp = make_response(render_template('inventoryrep.html'))
    
