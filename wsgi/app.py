@@ -55,9 +55,7 @@ def inventoryrep():
     if request.method == 'POST':
         idate = request.form['idate']
         facility= request.form['facility']
-        resp.set_cookie('idate', idate)
-        resp.set_cookie('facility', facility)
-        invenbuilder(idate, facility)
+        
         command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.asset_fk=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
         try:
             conn = psycopg2.connect("dbname=lost host='/tmp/'")
