@@ -1,6 +1,7 @@
 from flask import Flask,make_response, render_template, session, redirect, url_for, escape, request
 #import psycopg2
 app = Flask(__name__)
+import traceback
 #app.run(host='0.0.0.0', port=8080)
 #app.debug = False
 @app.route('/')
@@ -66,8 +67,12 @@ def transbuilder(tdate):
     #command="SELECT * FROM transit WHERE date=%s"(tdate)
     try:
         conn = psycopg2.connect("dbname=lost, dbhost='/tmp'")
-    except:
+    except psycopg2.Error as e:
         print ("I am unable to connect to the database")
+        print e
+        print e.pgcode
+        print e.pgerror
+        print traceback.format_exc()
     cur = conn.cursor()
     cur.execute("""SELECT * FROM transit""")
     rows = cur.fetchall()
@@ -81,8 +86,12 @@ def invenbuilder(idate, facility):
     command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.assets=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
     try:
         conn = psycopg2.connect("dbname=lost, dbhost='/tmp'")
-    except:
+    except psycopg2.Error as e:
         print ("I am unable to connect to the database")
+        print e
+        print e.pgcode
+        print e.pgerror
+        print traceback.format_exc()
         
     cur = conn.cursor()
     cur.execute(command)
