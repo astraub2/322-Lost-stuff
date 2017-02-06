@@ -1,5 +1,5 @@
 from flask import Flask,make_response, render_template, session, redirect, url_for, escape, request
-#import psycopg2
+import psycopg2
 app = Flask(__name__)
 import traceback
 #app.run(host='0.0.0.0', port=8080)
