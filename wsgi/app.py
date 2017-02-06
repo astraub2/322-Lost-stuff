@@ -4,6 +4,8 @@ app = Flask(__name__)
 import traceback
 #app.run(host='0.0.0.0', port=8080)
 #app.debug = False
+app.secret_key = "super secret key"
+
 @app.route('/')
 def login():
     return render_template('login.html')
@@ -131,9 +133,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
-
-    sess.init_app(app)
-
+    
     app.run(host='0.0.0.0', port=8080)
