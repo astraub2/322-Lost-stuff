@@ -106,20 +106,37 @@ def inventoryrep():
 
 
 def transbuilder(tdate):
-    command="SELECT * FROM asset_on WHERE load_dt<=%s"(tdate)
-    try:
-        conn = psycopg2.connect("dbname=lost host='/tmp/'")
-    except psycopg2.Error as e:
-        print ("I am unable to connect to the database")
-        print (e)
-        print (e.pgcode)
-        print (e.pgerror)
-        print (traceback.format_exc())
-    cur = conn.cursor()
-    cur.execute("""SELECT * FROM transit""")
-    rows = cur.fetchall()
-    for row in rows:
-        print ("   ", row[0])
+    if(tdate==''):
+        command="SELECT * FROM asset_on"
+        try:
+            conn = psycopg2.connect("dbname=lost host='/tmp/'")
+        except psycopg2.Error as e:
+            print ("I am unable to connect to the database")
+            print (e)
+            print (e.pgcode)
+            print (e.pgerror)
+            print (traceback.format_exc())
+        cur = conn.cursor()
+        cur.execute(command)
+        rows = cur.fetchall()
+        for row in rows:
+            print ("   ", row[0])
+    else:
+        command="SELECT * FROM asset_on WHERE load_dt<=%s"(tdate)
+        try:
+            conn = psycopg2.connect("dbname=lost host='/tmp/'")
+        except psycopg2.Error as e:
+            print ("I am unable to connect to the database")
+            print (e)
+            print (e.pgcode)
+            print (e.pgerror)
+            print (traceback.format_exc())
+        cur = conn.cursor()
+        cur.execute(command)
+        rows = cur.fetchall()
+        for row in rows:
+            print ("   ", row[0])
+
 
 
 
