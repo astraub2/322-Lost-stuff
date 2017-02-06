@@ -68,7 +68,7 @@ def intransrep():
             print ("I am unable to connect to the database")
         cur = conn.cursor()
         cur.execute(command)
-         res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
+        res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
         processed2_data = []   # this is the processed result I'll stick in the session (or pass to the template)
         for r in res:
             print(res)
