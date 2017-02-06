@@ -69,10 +69,10 @@ def transbuilder(tdate):
         conn = psycopg2.connect("dbname=lost, dbhost='/tmp'")
     except psycopg2.Error as e:
         print ("I am unable to connect to the database")
-        print e
-        print e.pgcode
-        print e.pgerror
-        print traceback.format_exc()
+        print (e)
+        print (e.pgcode)
+        print (e.pgerror)
+        print (traceback.format_exc())
     cur = conn.cursor()
     cur.execute("""SELECT * FROM transit""")
     rows = cur.fetchall()
@@ -88,10 +88,10 @@ def invenbuilder(idate, facility):
         conn = psycopg2.connect("dbname=lost, dbhost='/tmp'")
     except psycopg2.Error as e:
         print ("I am unable to connect to the database")
-        print e
-        print e.pgcode
-        print e.pgerror
-        print traceback.format_exc()
+        print (e)
+        print (e.pgcode)
+        print (e.pgerror)
+        print (traceback.format_exc())
         
     cur = conn.cursor()
     cur.execute(command)
