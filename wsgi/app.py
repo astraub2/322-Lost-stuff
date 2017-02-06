@@ -57,7 +57,7 @@ def intransrep():
         processed2_data = []   # this is the processed result I'll stick in the session (or pass to the template)
         for r in res:
             print(res)
-            processed_data.append( dict(zip(('column_name5', 'column_name6', 'column_name7', 'column_name8', 'column_name9'), r)) )  # just making a dict out of the tuples from res
+            processed2_data.append( dict(zip(('column_name5', 'column_name6', 'column_name7', 'column_name8', 'column_name9'), r)) )  # just making a dict out of the tuples from res
         session['processed_data_trans'] = processed2_data
         resp = make_response(render_template('intransrep.html'))
     else:
@@ -68,11 +68,13 @@ def intransrep():
             print ("I am unable to connect to the database")
         cur = conn.cursor()
         cur.execute(command)
-        rows = cur.fetchall()
+         res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
+        processed2_data = []   # this is the processed result I'll stick in the session (or pass to the template)
         for r in res:
-            processed_data.append( dict(zip(('column_name5', 'column_name6', 'column_name7', 'column_name8', 'column_name9'), r)) )  # just making a dict out of the tuples from res
-            session['processed_data_session_name'] = processed_data
-            resp = make_response(render_template('intransrep.html'))
+            print(res)
+            processed2_data.append( dict(zip(('column_name5', 'column_name6', 'column_name7', 'column_name8', 'column_name9'), r)) )  # just making a dict out of the tuples from res
+        session['processed_data_trans'] = processed2_data
+        resp = make_response(render_template('intransrep.html'))
  
     return resp
     
