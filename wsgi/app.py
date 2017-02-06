@@ -83,7 +83,7 @@ def transbuilder(tdate):
 
 
 def invenbuilder(idate, facility):
-    command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.assets=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
+    command="SELECT assets.assets_pk, asset_at.facility_fk, assets.alt_description,asset_at.arrive_dt FROM asset_at LEFT JOIN assets ON asset_at.assets_fk=assets.assets_pk WHERE asset_at.facility_fk=(SELECT facilities_pk FROM facilities WHERE common_name='%s')"%(facility)
     try:
         conn = psycopg2.connect("dbname=lost host='/tmp/'")
     except psycopg2.Error as e:
