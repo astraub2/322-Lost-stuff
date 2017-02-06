@@ -21,6 +21,6 @@ rm -rf osnap_legacy osnap_legacy.tar.gz
 cd ..
 
 # Install the wsgi files
-cp -R src/* $HOME/wsgi
+cp -R wsgi* $HOME/wsgi
 
 
