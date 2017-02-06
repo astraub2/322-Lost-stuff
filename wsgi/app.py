@@ -95,9 +95,9 @@ def invenbuilder(idate, facility):
         
     cur = conn.cursor()
     cur.execute(command)
-##    rows = cur.fetchall()
-##    for row in rows:
-##        print ("   ", row[0])
+    rows = cur.fetchall()
+    for row in rows:
+        print ("   ", row[0])
 
 
 
