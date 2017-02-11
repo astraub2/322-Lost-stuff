@@ -212,7 +212,7 @@ def list_products():
         redirect('rest')
     
     # Setup a connection to the database
-    conn = psycopg2.connect(dbname=dbname,host=dbhost,port=dbport)
+    conn = psycopg2.connect("dbname=lost host='/tmp/'")
     cur  = conn.cursor()
     
     # If execution gets here we have request json to work with
