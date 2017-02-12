@@ -289,12 +289,6 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     return data
 @app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
-    if request.method=='POST' and 'key' in request.form:
-        req=json.loads(request.form['key'])
-
-    dat = dict()
-    dat['key'] = req['key']
-    dat['result'] = 'OK'
     data = json.dumps(dat)
     return data	
 	    
