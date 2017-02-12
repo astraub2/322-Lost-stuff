@@ -20,7 +20,7 @@ def main():
 
     # Setup the data to send
     sargs = dict()
-    sargs['arguments']=json.dumps(args)
+    sargs['arguments']=''
     sargs['signature']=''
     data = urlencode(sargs)
     #print("sending:\n%s"%data)
