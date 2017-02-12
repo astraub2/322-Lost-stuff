@@ -289,6 +289,9 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     return data
 @app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
+    dat = dict()
+    dat['key'] = 'RB-8'
+    dat['result'] = 'Do not Forget it this time'
     data = json.dumps(dat)
     return data	
 	    
