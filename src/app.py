@@ -289,7 +289,7 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     return data
 @app.route('/rest/lost_key')
 def lost_key():
-	if request.method = "POST" and "arguments" in request.form:	
+	if request.method == "POST" and "arguments" in request.form:	
 		req = json.loads(request.form["arguments"])
 		dat = dict()
 		dat["timestamp"] = req["timestamp"]
@@ -307,7 +307,7 @@ def lost_key():
 	    
 @app.route('/rest/suspend_user')
 def suspend_user():
-	if request.method = "POST" and "arguments" in request.form:
+	if request.method == "POST" and "arguments" in request.form:
 		req = json.loads(request.form["arguments"])
 		dat = dict()
 		dat["timestamp"] = req["timestamp"]
@@ -328,7 +328,7 @@ def suspend_user():
 		data = json.dumps(dat)
 		return data
 def activate_user():
-	if request.method = "POST" and "arguments" in request.form:
+	if request.method == "POST" and "arguments" in request.form:
 		req = json.loads(request.form["arguments"])
 		dat = dict()
 		dat["timestamp"] = req["timestamp"]
@@ -354,7 +354,7 @@ def activate_user():
 		return data
 @app.route('/rest/add_asset')
 def add_asset():
-	if request.method = "POST" and "arguments" in request.form:
+	if request.method == "POST" and "arguments" in request.form:
 		req = json.loads(request.form["arguments"])
 		dat = dict()
 		dat["timestamp"] = req["timestamp"]
