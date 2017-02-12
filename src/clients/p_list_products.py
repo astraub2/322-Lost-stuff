@@ -44,11 +44,11 @@ def main():
     data = urlencode(sargs)
     
     # Make the resquest
-    req = Request(sys.argv[1],data.encode('ascii'),method='POST')
+    req = Request(sys.argv[1],data,method='POST')
     res = urlopen(req)
     
     # Parse the response
-    resp = json.loads(res.read().decode('ascii'))
+    resp = json.loads(res.read())
     
     # Print the result code
     #print("Call to LOST returned: %s"%resp['listing'])
