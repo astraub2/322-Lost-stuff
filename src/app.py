@@ -289,8 +289,7 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     return data
 @app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
-    # Try to handle as plaintext
-    if request.method=='POST':
+    if request.method=='POST' and 'key' in request.form::
         req=json.loads(request.form['key'])
 
     dat = dict()
@@ -310,6 +309,7 @@ def suspend_user():
     dat['result'] = 'OK'
     data = json.dumps(dat)
     return data
+
 @app.route('/rest/activate_user', methods=('POST',))
 def activate_user():
 	# Try to handle as plaintext
