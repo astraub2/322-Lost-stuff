@@ -291,13 +291,12 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
 def lost_key():
     dat = dict()
     dat['key'] = 'RB-8'
-    dat['result'] = 'Do not Forget it this time'
+    dat['result'] = 'Confirm'
     data = json.dumps(dat)
     return data	
 	    
 @app.route('/rest/suspend_user', methods=('POST',))
 def suspend_user():
-    # Try to handle as plaintext
     if request.method=='POST' and 'arguments' in request.form:
         req=json.loads(request.form['arguments'])
 
@@ -309,7 +308,6 @@ def suspend_user():
 
 @app.route('/rest/activate_user', methods=('POST',))
 def activate_user():
-	# Try to handle as plaintext
     if request.method=='POST' and 'arguments' in request.form:
         req=json.loads(request.form['arguments'])
 
@@ -321,14 +319,20 @@ def activate_user():
 
 @app.route('/rest/add_asset')
 def add_asset():
-	if request.method == "POST" and "arguments" in request.form:
-		req = json.loads(request.form["arguments"])
-		dat = dict()
-		dat["timestamp"] = req["timestamp"]
-		##TODO
-		dat["result"] = "OK"
-		data = json.dumps(dat)
-		return data
+    
+    dat = dict()
+    
+    dat['result'] = 'Asset added to database'
+    data = json.dumps(dat)
+    return data
+@app.route('/rest/add_product')
+def add_asset():
+    
+    dat = dict()
+    
+    dat['result'] = 'Product added to database'
+    data = json.dumps(dat)
+    return data
 	    
 @app.route('/goodbye')
 def goodbye():
