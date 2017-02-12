@@ -289,21 +289,8 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     return data
 @app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
-	if request.method == 'POST' and 'arguments' in request.form:	
-		#req = json.loads(request.form['arguments'])
-		#dat = dict()
-		#dat['timestamp'] = req['timestamp']
-
-		with open(lost_key) as f:
-			key = f.read()
-			if key == '':
-				dat['result'] = "FAIL"
-			else:
-				dat['result'] = "OK"
-			dat['key'] = key
-
-		#data = json.dumps(dat)
-		#return data
+    #if request.method == 'POST' and 'arguments' in request.form:	
+		
 	    
 @app.route('/rest/suspend_user', methods=('POST',))
 def suspend_user():
