@@ -290,11 +290,11 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
 @app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
     # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
+    if request.method=='POST':
+        req=json.loads(request.form['key'])
 
     dat = dict()
-    dat['timestamp'] = req['timestamp']
+    dat['key'] = req['key']
     dat['result'] = 'OK'
     data = json.dumps(dat)
     return data	
