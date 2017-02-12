@@ -307,52 +307,28 @@ def lost_key():
 	    
 @app.route('/rest/suspend_user')
 def suspend_user():
-	if request.method == "POST" and "arguments" in request.form:
-		req = json.loads(request.form["arguments"])
-		dat = dict()
-		dat["timestamp"] = req["timestamp"]
-		dat["result"] = "OK"
+    # Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
 
-		conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-		cur = conn.cursor()
-		cur.execute("SELECT user_pk, active FROM users WHERE username=%s", (req["username"],))
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    return data
 
-		try:
-			result = cur.fetchone()
-		except ProgrammingError:
-			result = False
-
-		if result != False:
-			cur.execute("UPDATE users SET active=FALSE WHERE username=%s", (req["username"],))
-
-		data = json.dumps(dat)
-		return data
 def activate_user():
-	if request.method == "POST" and "arguments" in request.form:
-		req = json.loads(request.form["arguments"])
-		dat = dict()
-		dat["timestamp"] = req["timestamp"]
-		## need sql
-		conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-		cur = conn.cursor()
-		cur.execute("SELECT user_pk, active FROM users WHERE username=%s;", (req["username"],))
-		try:
-			result = cur.fetchone()
-		except ProgrammingError:
-			result = None
+	# Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
 
-		if result == None:
-			dat["result"] = "NEW"
-			cur.execute("INSERT INTO users (username, active) VALUES (%s, TRUE)", (req["username"],))
-		elif result[1] == False:
-			dat["result"] = "OK"
-			cur.execute("UPDATE users SET active=TRUE WHERE username=%s", (req["username"],))
-		else:
-			dat["result"] = "FAIL"
-
-		data = json.dumps(dat)
-		return data
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    return data
 @app.route('/rest/add_asset')
+
 def add_asset():
 	if request.method == "POST" and "arguments" in request.form:
 		req = json.loads(request.form["arguments"])
