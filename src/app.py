@@ -287,7 +287,7 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     
     conn.close()
     return data
-@app.route('/rest/lost_key')
+@app.route('/rest/lost_key', methods=('POST',))
 def lost_key():
 	if request.method == "POST" and "arguments" in request.form:	
 		req = json.loads(request.form["arguments"])
@@ -305,7 +305,7 @@ def lost_key():
 		data = json.dumps(dat)
 		return data
 	    
-@app.route('/rest/suspend_user')
+@app.route('/rest/suspend_user', methods=('POST',))
 def suspend_user():
     # Try to handle as plaintext
     if request.method=='POST' and 'arguments' in request.form:
@@ -316,7 +316,7 @@ def suspend_user():
     dat['result'] = 'OK'
     data = json.dumps(dat)
     return data
-
+@app.route('/rest/activate_user', methods=('POST',))
 def activate_user():
 	# Try to handle as plaintext
     if request.method=='POST' and 'arguments' in request.form:
@@ -327,8 +327,8 @@ def activate_user():
     dat['result'] = 'OK'
     data = json.dumps(dat)
     return data
-@app.route('/rest/add_asset')
 
+@app.route('/rest/add_asset')
 def add_asset():
 	if request.method == "POST" and "arguments" in request.form:
 		req = json.loads(request.form["arguments"])
