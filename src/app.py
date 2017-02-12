@@ -291,8 +291,8 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
 def lost_key():
 	if request.method == 'POST' and 'arguments' in request.form:	
 		#req = json.loads(request.form['arguments'])
-		dat = dict()
-		dat['timestamp'] = req['timestamp']
+		#dat = dict()
+		#dat['timestamp'] = req['timestamp']
 
 		with open(lost_key) as f:
 			key = f.read()
@@ -302,8 +302,8 @@ def lost_key():
 				dat['result'] = "OK"
 			dat['key'] = key
 
-		data = json.dumps(dat)
-		return data
+		#data = json.dumps(dat)
+		#return data
 	    
 @app.route('/rest/suspend_user', methods=('POST',))
 def suspend_user():
