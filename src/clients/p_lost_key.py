@@ -17,7 +17,7 @@ def main():
     
     # Print a message to let the user know what is being tried
     print("Requesting the LOST public key")
-
+    
     # Setup the data to send
     sargs = dict()
     sargs['arguments']=''
