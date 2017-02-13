@@ -291,7 +291,7 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
 def lost_key():
     dat = dict()
     dat['key'] = 'RB-8'
-    dat['result'] = 'Confirm'
+    dat['result'] = 'OK'
     data = json.dumps(dat)
     return data	
 	    
@@ -322,7 +322,7 @@ def add_asset():
     
     dat = dict()
     
-    dat['result'] = 'Asset added to database'
+    dat['result'] = 'OK. Asset added to database'
     data = json.dumps(dat)
     return data
 @app.route('/rest/add_product')
@@ -330,7 +330,7 @@ def add_product():
     
     dat = dict()
     
-    dat['result'] = 'Product added to database'
+    dat['result'] = 'OK. Product added to database'
     data = json.dumps(dat)
     return data
 ##@app.route('/rest/activate_user', methods=("POST",))
