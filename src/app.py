@@ -326,13 +326,61 @@ def add_asset():
     data = json.dumps(dat)
     return data
 @app.route('/rest/add_product')
-def add_asset():
+def add_product():
     
     dat = dict()
     
     dat['result'] = 'Product added to database'
     data = json.dumps(dat)
     return data
+##@app.route('/rest/activate_user', methods=("POST",))
+##def activate_user():
+##	if request.method = "POST" and "arguments" in request.form:
+##		req = json.loads(request.form["arguments"])
+##		dat = dict()
+##		dat["timestamp"] = req["timestamp"]
+##		conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+##		cur = conn.cursor()
+##		cur.execute("SELECT user_pk, active FROM users WHERE username=%s;", (req["username"],))
+##		try:
+##			result = cur.fetchone()
+##		except ProgrammingError:
+##			result = None
+##
+##		if result == None:
+##			dat["result"] = "NEW"
+##			cur.execute("INSERT INTO users (username, active) VALUES (%s, TRUE)", (req["username"],))
+##		elif result[1] == False:
+##			dat["result"] = "OK"
+##			cur.execute("UPDATE users SET active=TRUE WHERE username=%s", (req["username"],))
+##		else:
+##			dat["result"] = "FAIL"
+##
+##		data = json.dumps(dat)
+##		return data
+##
+##@app.route('/rest/suspend_user')
+##def suspend_user():
+##	if request.method = "POST" and "arguments" in request.form:
+##		req = json.loads(request.form["arguments"])
+##		dat = dict()
+##		dat["timestamp"] = req["timestamp"]
+##		dat["result"] = "OK"
+##
+##		conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+##		cur = conn.cursor()
+##		cur.execute("SELECT user_pk, active FROM users WHERE username=%s", (req["username"],))
+##
+##		try:
+##			result = cur.fetchone()
+##		except ProgrammingError:
+##			result = False
+##
+##		if result != False:
+##			cur.execute("UPDATE users SET active=FALSE WHERE username=%s", (req["username"],))
+##
+##		data = json.dumps(dat)
+##		return data
 	    
 @app.route('/goodbye')
 def goodbye():
