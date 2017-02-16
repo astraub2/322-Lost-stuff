@@ -1,15 +1,11 @@
-create table authentication
-(user_fk serial primary key,
- username varchar(16),
- password varchar(16),
- logged_in BOOLEAN DEFAULT false);
+
 #I made user_pk and logged_in variables for future accesability
 #I limeted user name and password to 16 char according
 #to specification
 #following tables will likely come in handy:
 create table users
 (user_pk serial primary key,
-username varchar(255),
+username varchar(16),
 password varchar(16),
 active BOOLEAN
 logged_in BOOLEAN DEFAULT false);
