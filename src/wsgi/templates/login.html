@@ -1,0 +1,20 @@
+<html>
+	<head><title>LOST User Login</title></head>
+	<body>
+	<h1>Welcome</h1>
+	<br>
+		<h2>Enter User name and Password to Login</h2>
+		<form action="{{url_for('login')}}" method=post>
+			<dl>
+			<br>
+				<dt><b>Username:</b>
+				<dd><input type=text name=username maxlength=16>
+				<br>
+				<dt><b>Password:</b>
+				<dd><input type=password name=password maxlength=16>
+				<dd><input type=submit value=Login>
+			</dl>
+		</form><br>
+		Click <a href="{{url_for('create_user')}}">here</a> to register an account.<br>
+	</body>
+</html>
