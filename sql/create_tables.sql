@@ -7,7 +7,7 @@ create table users
 (user_pk serial primary key,
 username varchar(16),
 password varchar(16),
-active BOOLEAN
+active BOOLEAN,
 logged_in BOOLEAN);
 
 create table roles
