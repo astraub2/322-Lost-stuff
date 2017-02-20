@@ -8,7 +8,7 @@ create table users
 username varchar(16),
 password varchar(16),
 active BOOLEAN
-logged_in BOOLEAN DEFAULT false);
+logged_in BOOLEAN);
 
 create table roles
 (role_pk serial primary key,
