@@ -24,18 +24,18 @@ def create_user():
 			#also add role if not in roles
 			cur.execute('SELECT role_pk FROM roles WHERE role_name=%s', (role,))
 			try:
-				result = cur.fetchone()
+				results = cur.fetchone()
 			except ProgrammingError:
-				result = None
-			if result == None:
+				results = None
+			if results == None:
 				#role is not in table
-				cur.execute('INSERT INTO roles (role_name) VALUES (%s)', (role))
+				cur.execute('INSERT INTO roles (role_name) VALUES (%s)', (role,))
 				cur.execute('SELECT role_pk FROM roles WHERE role_name=%s', (role,))
 				try:
 					role_pk = cur.fetchone()
 				except ProgrammingError:
 					role_pk = None
-				if result != None:
+				if role_pk != None:
 					cur.execute('INSERT INTO users (username, password, role_fk) VALUES (%s, %s, %s)', (username, password, role_pk))
 					conn.commit()
 					cur.close()
