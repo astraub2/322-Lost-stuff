@@ -86,7 +86,7 @@ def dashboard():
 def add_facility():
     if request.method == 'GET':
     	conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-		cur = conn.cursor()
+	cur = conn.cursor()
         command='SELECT common_name FROM facilities'
         cur.execute(command)
         res = cur.fetchall()
