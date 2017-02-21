@@ -6,10 +6,13 @@
 		<h2>Current Facilities:</h2>
 		<table>
   {% for entry in session.processed_facilities %}
-  <tr>|
+  <tr>
     <td>  {{ entry.column_name1 }} | </td>
-    |
-  </tr>
+    <td>  {{ entry.column_name2 }} | </td>
+    <td>  {{ entry.column_name3 }} | </td>
+    <td>  {{ entry.column_name4 }} | </td>
+
+  </tr>>
   {% endfor %}
 </table> 
 <h2>Please Enter New Facility Paramaters:</h2>
@@ -27,4 +30,3 @@
 		</form><br>
 		<a href="{{url_for('login')}}">Login Screen</a>.
 	</body>
-</html>

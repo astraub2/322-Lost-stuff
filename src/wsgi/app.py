@@ -87,12 +87,13 @@ def add_facility():
     if request.method == 'GET':
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
-        command='SELECT common_name FROM facilities'
+        command='SELECT * FROM facilities'
         cur.execute(command)
         res = cur.fetchall()
         processed_data = [] 
         for r in res:
-                processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
+                print(res)
+                processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
         session['session.processed_facilities'] = processed_data
         resp = make_response(render_template('add_facility.html'))
         return resp
