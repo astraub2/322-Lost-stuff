@@ -87,7 +87,7 @@ def add_facility():
     if request.method == 'GET':
     	command='SELECT common_name FROM facilities'
     	cur.execute(command)
-        res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
+    	res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
         processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
         for r in res:
             processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
