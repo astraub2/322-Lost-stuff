@@ -15,15 +15,14 @@ logged_in BOOLEAN);
 create table roles
 (
 role_pk serial primary key,
-role_name varchar(255),
-);
+role_name varchar(255));
 
 --returns a table of what each users role is
 --may be superfluouse, but keep for now
 create table user_is
 (user_fk INT,
 role_fk integer REFERENCES roles (role_pk),
-role_name varchar(255);
+role_name varchar(255));
 
 create table assets
 (assets_pk int,
