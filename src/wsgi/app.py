@@ -13,6 +13,7 @@ def create_user():
 		cur = conn.cursor()
 		username = request.form['username']
 		password = request.form['password']
+		role=request.form['role']
 		cur.execute('SELECT username FROM users WHERE username=%s', (username,))
 		try:
 			result = cur.fetchone()
@@ -20,11 +21,33 @@ def create_user():
 			result = None
 
 		if result == None:
-			cur.execute('INSERT INTO users (username, password) VALUES (%s, %s)', (username, password))
-			conn.commit()
-			cur.close()
-			conn.close()
-			return render_template('user_added.html')
+			#also add role if not in roles
+			cur.execute('SELECT role_pk FROM roles WHERE role_name=%s', (role,))
+			try:
+				result = cur.fetchone()
+			except ProgrammingError:
+				result = None
+			if result == None:
+				#role is not in table
+				cur.execute('INSERT INTO roles (role_name) VALUES (%s)', (role))
+				cur.execute('SELECT role_pk FROM roles WHERE role_name=%s', (role,))
+				try:
+					role_pk = cur.fetchone()
+				except ProgrammingError:
+					role_pk = None
+				if result != None:
+					cur.execute('INSERT INTO users (username, password, role_fk) VALUES (%s, %s, %s)', (username, password, role_pk))
+					conn.commit()
+					cur.close()
+					conn.close()
+					return render_template('user_added.html')
+			else:	
+				#role is in table, result=role_pk
+				cur.execute('INSERT INTO users (username, password, role_fk) VALUES (%s, %s, %s)', (username, password, role_pk))
+				conn.commit()
+				cur.close()
+				conn.close()
+				return render_template('user_added.html')
 			
 		else:
 			cur.close()
@@ -59,6 +82,7 @@ def login():
 @app.route('/dashboard', methods = ['GET',])
 def dashboard():
 	return render_template('dashboard.html')
+	
 if __name__ == "__main__":
     
     app.run(host='0.0.0.0', port=8080)
