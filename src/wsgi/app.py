@@ -85,15 +85,15 @@ def dashboard():
 @app.route('/add_facility', methods = ['POST', 'GET'])
 def add_facility():
     if request.method == 'GET':
-    	command='SELECT common_name FROM facilities'
-    	cur.execute(command)
-    	res = cur.fetchall()  # this is the result of the database query "SELECT column_name1, column_name2 FROM some_table"
-        processed_data = []   # this is the processed result I'll stick in the session (or pass to the template)
-        for r in res:
-            processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
-        session['session.processed_facilities'] = processed_data
-        resp = make_response(render_template('add_facility.html'))
-    	return resp
+		command='SELECT common_name FROM facilities'
+		cur.execute(command)
+		# res = cur.fetchall()
+		# processed_data = [] 
+		# for r in res:
+		#     processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
+		# session['session.processed_facilities'] = processed_data
+		# resp = make_response(render_template('add_facility.html'))
+		# return resp
 
     if request.method == 'POST':
     	conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
