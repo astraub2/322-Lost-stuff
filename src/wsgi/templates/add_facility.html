@@ -1,0 +1,30 @@
+<html>
+	<head><title>LOST Facility Registration</title></head>
+	<body>
+	<h1>Facility Registration:</h1>
+	<br>
+		<h2>Current Facilities:</h2>
+		<table>
+  {% for entry in session.processed_facilities %}
+  <tr>
+    <td>  {{ entry.column_name1 }} | </td>
+    
+  </tr>
+  {% endfor %}
+</table> 
+<h2>Please Enter New Facility Paramaters:</h2>
+		<form action="{{url_for('create_user')}}" method=post>
+			<dl>
+			<br>
+				<dt><b>Facility Name:</b>
+				<dd><input type=common_name name=common_name maxlength=16>
+				<dt><b>Fcode:</b>
+				<dd><input type=fcode name=fcode maxlength=16>
+				<dt><b>Location:</b>
+				<dd><input type=location name=location maxlength=16>
+				<dd><input type=submit value=Register>
+			</dl>
+		</form><br>
+		<a href="{{url_for('login')}}">Login Screen</a>.
+	</body>
+</html>
