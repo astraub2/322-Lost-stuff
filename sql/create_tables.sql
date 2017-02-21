@@ -25,12 +25,12 @@ role_fk integer REFERENCES roles (role_pk),
 role_name varchar(255));
 
 create table assets
-(assets_pk int,
+(assets_pk serial primary key,
  asset_tag varchar(16),
  alt_description varchar(255));
 
 create table facilities
-(facilities_pk int,
+(facilities_pk serial primary key,
 fcode varchar(6),
 common_name varchar(32),
 location varchar(255));
