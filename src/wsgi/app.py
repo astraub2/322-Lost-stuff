@@ -85,19 +85,19 @@ def dashboard():
 @app.route('/add_facility', methods = ['POST', 'GET'])
 def add_facility():
     if request.method == 'GET':
-		command='SELECT common_name FROM facilities'
-		cur.execute(command)
-		# res = cur.fetchall()
-		# processed_data = [] 
-		# for r in res:
-		#     processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
-		# session['session.processed_facilities'] = processed_data
-		# resp = make_response(render_template('add_facility.html'))
-		# return resp
+        command='SELECT common_name FROM facilities'
+        cur.execute(command)
+        res = cur.fetchall()
+        processed_data = [] 
+        for r in res:
+                processed_data.append( dict(zip(('column_name1'), r)) )  # just making a dict out of the tuples from res
+        session['session.processed_facilities'] = processed_data
+        resp = make_response(render_template('add_facility.html'))
+        return resp
 
     if request.method == 'POST':
-    	conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-		cur = conn.cursor()
+        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+        cur = conn.cursor()
 	
 
 if __name__ == "__main__":
