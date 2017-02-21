@@ -42,8 +42,8 @@ def create_user():
 					conn.close()
 					return render_template('user_added.html')
 			else:	
-				#role is in table, result=role_pk
-				cur.execute('INSERT INTO users (username, password, role_fk) VALUES (%s, %s, %s)', (username, password, role_pk))
+				#role is in table, results=role_pk
+				cur.execute('INSERT INTO users (username, password, role_fk) VALUES (%s, %s, %s)', (username, password, results))
 				conn.commit()
 				cur.close()
 				conn.close()
