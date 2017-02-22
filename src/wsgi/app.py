@@ -97,7 +97,7 @@ def add_facility():
                 result = None
 
         if result == None:
-                cur.execute('INSERT into facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
+                cur.execute('INSERT INTO facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
       
                 session['common_name'] = common_name
                 return render_template('valid_facility.html')
