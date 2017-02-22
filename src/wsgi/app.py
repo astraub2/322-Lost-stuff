@@ -88,9 +88,9 @@ def add_facility():
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         common_name = request.form['common_name']
-	fcode = request.form['fcode']
-	location=request.form['location']
-	cur.execute('SELECT common_name FROM facilities WHERE common_name=%s', (common_name,))
+        fcode = request.form['fcode']
+        location=request.form['location']
+        cur.execute('SELECT common_name FROM facilities WHERE common_name=%s', (common_name,))
         try:
                 result = cur.fetchone()
         except ProgrammingError:
