@@ -97,10 +97,12 @@ def add_facility():
                 result = None
 
         if result == None:
-                return render_template('invalid_facility.html')
-        else:
+                cur.execute('INSERT into facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
+      
                 session['common_name'] = common_name
                 return render_template('valid_facility.html')
+        else:
+                return render_template('invalid_facility.html')
     else:
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
