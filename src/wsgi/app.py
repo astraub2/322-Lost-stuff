@@ -84,7 +84,24 @@ def dashboard():
 	return render_template('dashboard.html')
 @app.route('/add_facility', methods = ['POST', 'GET'])
 def add_facility():
-    if request.method == 'GET':
+    if request.method == 'POST':
+        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+        cur = conn.cursor()
+        common_name = request.form['common_name']
+	fcode = request.form['fcode']
+	location=request.form['location']
+	cur.execute('SELECT common_name FROM facilities WHERE common_name=%s', (common_name,))
+        try:
+                result = cur.fetchone()
+        except ProgrammingError:
+                result = None
+
+        if result == None:
+                return render_template('invalid_facility.html')
+        else:
+                session['common_name'] = common_name
+                return render_template('valid_facility.html')
+    else:
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         command='SELECT * FROM facilities'
@@ -97,10 +114,7 @@ def add_facility():
         session['session.processed_facilities'] = processed_data
         resp = make_response(render_template('add_facility.html'))
         return resp
-
-    if request.method == 'POST':
-        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-        cur = conn.cursor()
+    
 	
 
 if __name__ == "__main__":
