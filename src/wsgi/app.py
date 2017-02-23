@@ -98,10 +98,13 @@ def add_facility():
 
         if result == None:
                 cur.execute('INSERT INTO facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
-      
+                cur.commit()
+                cur.close()
                 session['common_name'] = common_name
                 return render_template('valid_facility.html')
         else:
+                cur.commit()
+                cur.close()
                 return render_template('invalid_facility.html')
     else:
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
@@ -113,6 +116,8 @@ def add_facility():
         for r in res:
                 print(res)
                 processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
+        cur.commit()
+        cur.close()
         session['session.processed_facilities'] = processed_data
         resp = make_response(render_template('add_facility.html'))
         return resp
