@@ -169,26 +169,26 @@ def add_asset():
 	
 	if request.method == 'POST':
                 print('pass 1')
-		asset_tag = request.form['asset_tag']
-		description = request.form['description']
-		facility_name = request.form['common_name']
-		arrive_dt = request.form['arrive_dt']
+                asset_tag = request.form['asset_tag']
+                description = request.form['description']
+                facility_name = request.form['common_name']
+                arrive_dt = request.form['arrive_dt']
 		cur.execute('SELECT asset_tag FROM assets WHERE asset_tag=%s', (asset_tag,))
 		try:
                         print('pass 2')
-			res = cur.fetchone()
+                        res = cur.fetchone()
 		except ProgrammingError:
 			res = None
 		if res == None:
                         print('pass 3')
-			cur.execute('INSERT INTO assets (asset_tag, description) VALUES (%s, %s);', (asset_tag, description))
+                        cur.execute('INSERT INTO assets (asset_tag, description) VALUES (%s, %s);', (asset_tag, description))
                         print('pass 4')
-			cur.execute('INSERT INTO asset_at (assets_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
-				(SELECT facility_pk FROM facilities WHERE facility_common_name=%s), %s);', (asset_tag, name, arrive_dt))
-			conn.commit()
-			cur.close()
-			conn.close()
-			return redirect(url_for('add_asset'))
+                        cur.execute('INSERT INTO asset_at (assets_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
+                                (SELECT facility_pk FROM facilities WHERE facility_common_name=%s), %s);', (asset_tag, name, arrive_dt))
+                        conn.commit()
+                        cur.close()
+                        conn.close()
+                        return redirect(url_for('add_asset'))
 		else:
 			cur.close()
 			conn.close()
