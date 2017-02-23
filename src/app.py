@@ -159,7 +159,7 @@ def add_asset():
 	res = cur.fetchall()
 	facility_data = [] 
 	for r in res:
-	        #print(r)
+	        print(r)
 	        facility_data.append( dict(zip(('common_name'), r)) )  # just making a dict out of the tuples from res
 	conn.commit()
 	session['facility_name'] = facility_data
