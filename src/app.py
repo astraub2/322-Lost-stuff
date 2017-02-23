@@ -135,8 +135,59 @@ def add_facility():
         session['processed'] = processed_data
         resp = make_response(render_template('add_facility.html'))
         return resp
-    
-	
+@app.route('/add_asset', methods = ['GET', 'POST'])
+def add_asset():
+	conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+	cur = conn.cursor()
+	cur.execute('SELECT a.asset_tag, a.description, aa.arrive_dt, aa.depart_dt, \
+		f.common_name, f.fcode FROM assets AS a INNER JOIN \
+		asset_at AS aa ON aa.asset_fk=a.asset_pk INNER JOIN facilities AS f \
+		ON f.facility_pk=aa.facility_fk ORDER BY aa.arrive_dt ASC;')
+
+	try:
+		result = cur.fetchall()
+	except ProgrammingError:
+		result = None
+
+	asset_report = []
+	for r in result:
+		asset_report.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
+
+
+	session['asset_report'] = asset_report
+	cur.execute('SELECT common_name FROM facilities;')
+	res = cur.fetchall()
+	facility_data = [] 
+	for r in res:
+	        #print(r)
+	        facility_data.append( dict(zip(('common_name'), r)) )  # just making a dict out of the tuples from res
+	conn.commit()
+	session['facilities'] = facility_data
+	if request.method == 'POST':
+		asset_tag = request.form['asset_tag']
+		description = request.form['description']
+		facility_name = request.form['facility_name']
+		arrive_dt = request.form['arrive_dt']
+		cur.execute('SELECT asset_tag FROM assets WHERE asset_tag=%s', (asset_tag,))
+		try:
+			res = cur.fetchone()
+		except ProgrammingError:
+			res = None
+		if res == None:
+			cur.execute('INSERT INTO assets (asset_tag, description) VALUES (%s, %s);', (asset_tag, description))
+			cur.execute('INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
+				(SELECT facility_pk FROM facilities WHERE facility_common_name=%s), %s);', (asset_tag, name, arrive_dt))
+			conn.commit()
+			cur.close()
+			conn.close()
+			return redirect(url_for('add_asset'))
+		else:
+			cur.close()
+			conn.close()
+			return render_template('asset_exists.html')
+
+	return render_template('add_asset.html')
+
 
 if __name__ == "__main__":
     

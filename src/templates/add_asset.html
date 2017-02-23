@@ -1,0 +1,39 @@
+<html>
+	<head><title>LOST Asset Registration</title></head>
+	<body>
+	<h1>Asset Registration:</h1>
+	<br>
+		<h2>Current Assets:</h2>
+		<< ID | Name | Location | FCode | Arrive | Depart >>
+		<br>
+		<table>
+ {% for entry in session.asset_report %}
+			<tr>
+				<td>{{entry.asset_tag}}</td>
+				<td>{{entry.description}}</td>
+				<td>{{entry.facility_name}}</td>
+				<td>{{entry.facility_fcode}}</td>
+				<td>{{entry.arrive_dt}}</td>
+				<td>{{entry.depart_dt}}</td>
+			<tr>
+			{% endfor %}
+</table> 
+<h2>Please Enter New Asset Parameters:</h2>
+		<form action="{{url_for('add_asset')}}" method='POST'>
+			<dl>
+				<dt>Asset tag (max 16 characters):
+				<dd><input type='text' name='asset_tag' maxlength=16>
+				<dt>Asset description:
+				<dd><input type='text' name='description'>
+				<dt>Enter the location of the asset:
+				<dd><select name='facility_name'>
+					{% for entry in session.facility_list %}
+					<option value='{{entry.facility_name}}'>{{entry.facility_name}}</option>
+					{% endfor %}
+				<dt>Enter the date on which the asset was received:
+				<dd><input type='date' name='arrive_dt' value='1999-01-01'>
+				<dd><input type='submit' value='Add'>
+			</dl>
+		</form> <br>
+		<a href="{{url_for('login')}}">Login Screen</a>
+	</body>
