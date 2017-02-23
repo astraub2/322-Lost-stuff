@@ -180,7 +180,7 @@ def add_asset():
 		except ProgrammingError:
 			res = None
 		if res == None:
-			cur.execute('INSERT INTO assets (asset_tag, description) VALUES (%s, %s);', (asset_tag, description))
+			cur.execute('INSERT INTO assets (asset_tag, alt_description) VALUES (%s, %s);', (asset_tag, description))
 			print('pass 3')
 
 			cur.execute('INSERT INTO asset_at (assets_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
