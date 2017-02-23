@@ -160,7 +160,7 @@ def add_asset():
 	facility_data = [] 
 	for r in res:
 	        print(r)
-	        row=dic()
+	        row=dict()
 	        row['common_name']=r[0]
 	        facility_data.append(row)
                 
