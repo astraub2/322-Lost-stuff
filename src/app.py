@@ -162,7 +162,7 @@ def add_asset():
 	        #print(r)
 	        facility_data.append( dict(zip(('common_name'), r)) )  # just making a dict out of the tuples from res
 	conn.commit()
-	session['facilities'] = facility_data
+	session['facility_name'] = facility_data
 	if request.method == 'POST':
 		asset_tag = request.form['asset_tag']
 		description = request.form['description']
