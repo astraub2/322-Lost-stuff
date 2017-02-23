@@ -26,7 +26,7 @@
 				<dt>Asset description:
 				<dd><input type='text' name='description'>
 				<dt>Enter the location of the asset:
-				<dd><select name='facility_name'>
+				<dd><select name='facility_name' size=16>
 					{% for entry in session.facility_name %}
 					<option value='{{entry.common_name}}'>{{entry.facility_name}}</option>
 					{% endfor %}
