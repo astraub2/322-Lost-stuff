@@ -97,12 +97,23 @@ def add_facility():
                 result = None
 
         if result == None:
-                cur.execute('INSERT INTO facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
-                conn.commit()
-                cur.close()
-                conn.close()
-                session['common_name'] = common_name
-                return render_template('valid_facility.html')
+                cur.execute('SELECT fcode FROM facilities WHERE fcode=%s', (fcode,))
+                try:
+                        result2 = cur.fetchone()
+                except ProgrammingError:
+                        result2 = None
+                if result2 == None:
+                        cur.execute('INSERT INTO facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
+                        conn.commit()
+                        cur.close()
+                        conn.close()
+                        session['common_name'] = common_name
+                        return render_template('valid_facility.html')
+                else:
+                        conn.commit()
+                        cur.close()
+                        conn.close()
+                        return render_template('invalid_facility.html')
         else:
                 conn.commit()
                 cur.close()
