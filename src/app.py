@@ -141,7 +141,7 @@ def add_asset():
 	cur = conn.cursor()
 	cur.execute('SELECT a.asset_tag, a.description, aa.arrive_dt, aa.depart_dt, \
 		f.common_name, f.fcode FROM assets AS a INNER JOIN \
-		asset_at AS aa ON aa.asset_fk=a.asset_pk INNER JOIN facilities AS f \
+		asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
 		ON f.facility_pk=aa.facility_fk ORDER BY aa.arrive_dt ASC;')
 
 	try:
@@ -175,7 +175,7 @@ def add_asset():
 			res = None
 		if res == None:
 			cur.execute('INSERT INTO assets (asset_tag, description) VALUES (%s, %s);', (asset_tag, description))
-			cur.execute('INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
+			cur.execute('INSERT INTO asset_at (assets_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
 				(SELECT facility_pk FROM facilities WHERE facility_common_name=%s), %s);', (asset_tag, name, arrive_dt))
 			conn.commit()
 			cur.close()
