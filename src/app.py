@@ -184,7 +184,7 @@ def add_asset():
 			print('pass 3')
 
 			cur.execute('INSERT INTO asset_at (assets_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag=%s), \
-				(SELECT facility_pk FROM facilities WHERE facility_common_name=%s), %s);', (asset_tag, name, arrive_dt))
+				(SELECT facility_pk FROM facilities WHERE common_name=%s), %s);', (asset_tag, common_name, arrive_dt))
 			print('pass 4')
 			conn.commit()
 			cur.close()
