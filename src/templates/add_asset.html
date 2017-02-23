@@ -28,7 +28,7 @@
 				<dt>Enter the location of the asset:
 				<dd><select name='facility_name'>
 					{% for entry in session.facility_name %}
-					<option value='{{entry.common_name}}'>{{entry.facility_name}}</option>
+					<option value='{{entry.common_name}}'>{{entry.common_name}}</option>
 					{% endfor %}
 				<dt>Enter the date on which the asset was received:
 				<dd><input type='date' name='arrive_dt' value='1999-01-01'>
