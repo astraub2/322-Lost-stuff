@@ -4,6 +4,7 @@
 	<h1>Facility Registration:</h1>
 	<br>
 		<h2>Current Facilities:</h2>
+		<< ID | FCode | Name | Location >>
 		<table>
   {% for entry in session.processed %}
   <tr>
@@ -15,7 +16,7 @@
   </tr>>
   {% endfor %}
 </table> 
-<h2>Please Enter New Facility Paramaters:</h2>
+<h2>Please Enter New Facility Parameters:</h2>
 		<form action="{{url_for('add_facility')}}" method=post>
 			<dl>
 			<br>
@@ -28,5 +29,5 @@
 				<dd><input type=submit value=Register>
 			</dl>
 		</form><br>
-		<a href="{{url_for('login')}}">Login Screen</a>.
+		<a href="{{url_for('login')}}">Login Screen</a>
 	</body>

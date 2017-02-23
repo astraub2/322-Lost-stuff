@@ -127,7 +127,7 @@ def add_facility():
         res = cur.fetchall()
         processed_data = [] 
         for r in res:
-                print(r)
+                #print(r)
                 processed_data.append( dict(zip(('column_name1', 'column_name2', 'column_name3', 'column_name4'), r)) )  # just making a dict out of the tuples from res
         conn.commit()
         cur.close()
