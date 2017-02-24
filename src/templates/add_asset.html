@@ -4,8 +4,14 @@
 	<h1>Asset Registration:</h1>
 	<br>
 		<h2>Current Assets:</h2>
-		<< ID | Name | Location | FCode | Arrive | Depart >>
-		<br>
+		<table>
+		<tb>ID      </tb>
+		<tb>Name    </tb>
+		<tb>Location    </tb>
+		<tb>Fcode </tb>
+		<tb>Arrive                 </tb>
+		<tb>Depart                 </tb>
+		</table>
 		<table>
  {% for entry in session.asset_report %}
 			<tr>
@@ -38,5 +44,5 @@
 				<dd><input type='submit' value='Add Asset'>
 			</dl>
 		</form> <br>
-		<a href="{{url_for('login')}}">Login Screen</a>
+		<a href="{{url_for('dashboard')}}">Dashboard</a>
 	</body>
