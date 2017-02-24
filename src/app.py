@@ -198,7 +198,76 @@ def add_asset():
         
 
         return render_template('add_asset.html')
+@app.route('/dispose_asset', methods = ['GET', 'POST'])
+def dispose_asset():
+        if request.method == 'POST':
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                asset_tag = request.form['asset_tag']
+                dispose_dt = request.form['dispose_dt']
+                cur.execute('SELECT asset_tag FROM assets WHERE asset_tag=%s', (asset_tag,))
+                try:
+                        res = cur.fetchone()
+                        #print('pass 2')
+                except ProgrammingError:
+                        res = None
+                if res == None:
+                        cur.close()
+                        conn.close()
+                        return render_template('add_DNE.html')
+                else:
+                        return render_template('asset_disposed.html')
+                        
+        else:
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                username=session['username']
+                cur.execute('SELECT username FROM users WHERE username=%s', (username,))
+                try:
+                        result = cur.fetchone()
+                except ProgrammingError:
+                        result = None
 
+                if result != 'Logistics Officer':
+                        return render_template('invalid_credentials.html')
+                else:
+                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
+                                f.common_name, f.fcode FROM assets AS a INNER JOIN \
+                                asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
+                                ON f.facilities_pk=aa.facility_fk ORDER BY aa.arrive_dt ASC;')
+
+                        try:
+                                result = cur.fetchall()
+                        except ProgrammingError:
+                                result = None
+
+                        asset_report = []
+                        for r in result:
+                                asset_report.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
+
+
+                        session['asset_report'] = asset_report
+                        cur.execute('SELECT common_name FROM facilities;')
+                        res = cur.fetchall()
+                        facility_data = [] 
+                        for r in res:
+                                print(r)
+                                row=dict()
+                                row['common_name']=r[0]
+                                facility_data.append(row)
+                                
+                        
+                        session['facility_name'] = facility_data
+                        
+
+                        return render_template('add_asset.html')
+                        
+                
+
+
+
+
+                
 
 if __name__ == "__main__":
     
