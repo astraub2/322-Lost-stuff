@@ -21,14 +21,14 @@
 <h2>Please Enter New Asset Parameters:</h2>
 		<form action="{{url_for('add_asset')}}" method='POST'>
 			<dl>
-				<dt>Asset tag (max 16 characters):
+				<dt>Asset Tag (max 16 characters):
 				<dd><input type='text' name='asset_tag' maxlength=16>
-				<dt>Asset description:
+				<dt>Asset Description:
 				<dd><input type='text' name='description'>
 				<dt>
-				Enter the date on which the asset was received:
+				Asset Intake Date:
 				<dd><input type='date' name='arrive_dt' value='1999-01-01'>
-				<dt>Enter the location of the asset:
+				<dt>Asset Location:
 				<dd><select name='common_name'>
 					{% for entry in session.facility_name %}
 					<option value='{{entry.common_name}}'>{{entry.common_name}}</option>
