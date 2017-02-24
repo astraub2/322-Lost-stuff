@@ -9,5 +9,5 @@ with cpath.open() as conf:
 	dbname = c['database']['dbname']
 	dbhost = c['database']['dbhost']
 	dbport = c['database']['dbport']
-	secret_key = c['session']['secret_key']
+	secret_key = 'pi'
 	
