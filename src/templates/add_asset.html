@@ -25,16 +25,15 @@
 				<dd><input type='text' name='asset_tag' maxlength=16>
 				<dt>Asset description:
 				<dd><input type='text' name='description'>
+				Enter the date on which the asset was received:
+				<dd><input type='date' name='arrive_dt' value='1999-01-01'>
 				<dt>Enter the location of the asset:
 				<dd><select name='common_name'>
 					{% for entry in session.facility_name %}
 					<option value='{{entry.common_name}}'>{{entry.common_name}}</option>
 					{% endfor %}
 				<dt>
-				<br>
-				Enter the date on which the asset was received:
-				<dd><input type='date' name='arrive_dt' value='1999-01-01'>
-				<dd><input type='submit' value='add_asset'>
+				<dd><input type='submit' value='Add Asset'>
 			</dl>
 		</form> <br>
 		<a href="{{url_for('login')}}">Login Screen</a>
