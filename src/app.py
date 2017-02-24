@@ -137,6 +137,33 @@ def add_facility():
         return resp
 @app.route('/add_asset', methods = ['GET', 'POST'])
 def add_asset():
+	if request.method == 'POST':
+		asset_tag = request.form['asset_tag']
+		#print('pass 1')
+		description = request.form['description']
+		facility_name = request.form['common_name']
+		arrive_dt = request.form['arrive_dt']
+		cur.execute('SELECT asset_tag FROM assets WHERE asset_tag=%s', (asset_tag,))
+		try:
+			res = cur.fetchone()
+			#print('pass 2')
+		except ProgrammingError:
+			res = None
+		if res == None:
+			cur.execute('INSERT INTO assets (asset_tag, alt_description) VALUES (%s, %s);', (asset_tag, description))
+			#print('pass 3')
+
+			cur.execute('INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT assets_pk FROM assets WHERE asset_tag=%s), \
+				(SELECT facilities_pk FROM facilities WHERE common_name=%s), %s);', (asset_tag, facility_name, arrive_dt))
+			#print('pass 4')
+			conn.commit()
+			cur.close()
+			conn.close()
+			return redirect(url_for('add_asset'))
+		else:
+			cur.close()
+			conn.close()
+			return render_template('asset_exists.html')
 	conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
 	cur = conn.cursor()
 	cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
@@ -167,33 +194,6 @@ def add_asset():
 	
 	session['facility_name'] = facility_data
 	
-	if request.method == 'POST':
-		asset_tag = request.form['asset_tag']
-		print('pass 1')
-		description = request.form['description']
-		facility_name = request.form['common_name']
-		arrive_dt = request.form['arrive_dt']
-		cur.execute('SELECT asset_tag FROM assets WHERE asset_tag=%s', (asset_tag,))
-		try:
-			res = cur.fetchone()
-			print('pass 2')
-		except ProgrammingError:
-			res = None
-		if res == None:
-			cur.execute('INSERT INTO assets (asset_tag, alt_description) VALUES (%s, %s);', (asset_tag, description))
-			print('pass 3')
-
-			cur.execute('INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT assets_pk FROM assets WHERE asset_tag=%s), \
-				(SELECT facilities_pk FROM facilities WHERE common_name=%s), %s);', (asset_tag, facility_name, arrive_dt))
-			print('pass 4')
-			conn.commit()
-			cur.close()
-			conn.close()
-			return redirect(url_for('add_asset'))
-		else:
-			cur.close()
-			conn.close()
-			return render_template('asset_exists.html')
 
 	return render_template('add_asset.html')
 
