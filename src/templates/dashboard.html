@@ -2,6 +2,14 @@
 	<head><title>LOST Dashboard</title></head>
 	<body>
 	<br>
-		<h2>Username: {{session.username}}.</h2>
+Welcome {{session.username}}
+<br>
+<br>
+<a href="{{url_for('add_facility')}}">Facilities</a>
+<a href="{{url_for('add_asset')}}">Assets</a>
+<a href="{{url_for('report')}}">Report</a>
+<br>
+<br>
+<a href="{{url_for('logout')}}">Logout</a>
 	</body>
 </html>
