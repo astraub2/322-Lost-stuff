@@ -229,6 +229,7 @@ def dispose_asset():
                         result = None
 
                 if result != 'Logistics Officer':
+                        print (result)
                         return render_template('invalid_credentials.html')
                 else:
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
