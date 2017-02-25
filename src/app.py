@@ -222,7 +222,7 @@ def dispose_asset():
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 username=session['username']
-                cur.execute('SELECT role_name FROM roles JOIN users ON role_pk WHERE username=%s', (username,))
+                cur.execute('SELECT role_name FROM users JOIN roles ON users.role_fk=roles.role_pk WHERE username=%s', (username,))
                 try:
                         result = cur.fetchone()
                 except ProgrammingError:
