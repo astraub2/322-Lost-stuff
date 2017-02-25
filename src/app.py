@@ -261,7 +261,7 @@ def dispose_asset():
                         session['facility_name'] = facility_data
                         
 
-                        return render_template('add_asset.html')
+                        return render_template('dispose_asset.html')
                         
                 
 
