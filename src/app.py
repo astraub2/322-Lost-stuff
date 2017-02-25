@@ -228,7 +228,7 @@ def dispose_asset():
                 except ProgrammingError:
                         result = None
 
-                if result != 'Logistics Officer':
+                if result != ('Logistics Officer',):
                         print (result)
                         return render_template('invalid_credentials.html')
                 else:
