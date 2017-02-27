@@ -296,7 +296,7 @@ def asset_report():
 
                 asset_rreport = []
                 for r in result:
-                        asset_report.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
+                        asset_rreport.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
                 session['asset_rreport'] = asset_rreport
 
                 
