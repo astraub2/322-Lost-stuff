@@ -290,7 +290,7 @@ def asset_report():
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
                                 f.common_name, f.fcode FROM assets AS a INNER JOIN \
                                 asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
-                                ON f.facilities_pk=aa.facility_fk WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s ;', (date, date,))
+                                ON f.facilities_pk=aa.facility_fk WHERE a.disposed_dt>=%s OR a.disposed_dt=NULL AND aa.arrive_dt<= %s ;', (date, date,))
 
                         try:
                                 result = cur.fetchall()
@@ -318,7 +318,7 @@ def asset_report():
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
                                 f.common_name, f.fcode FROM assets AS a INNER JOIN \
                                 asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
-                                ON f.facilities_pk=aa.facility_fk WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s AND f.common_name=%s;', (date, date,facility,))
+                                ON f.facilities_pk=aa.facility_fk WHERE a.disposed_dt>=%s OR a.disposed_dt=NULL AND aa.arrive_dt<= %s AND f.common_name=%s;', (date, date,facility,))
 
                         try:
                                 result = cur.fetchall()
