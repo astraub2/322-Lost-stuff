@@ -225,7 +225,7 @@ def dispose_asset():
                         except ProgrammingError:
                                 pk = None
                         #update dispose on asset and change asset_at
-                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=%s'(dispose_dk, pk,))
+                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=%s'(dispose_dt, pk,))
                         return render_template('asset_disposed.html')
                         
         else:
