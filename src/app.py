@@ -284,7 +284,7 @@ def asset_report():
                 facility = request.form['facility']
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
-                if facility='':
+                if facility= None:
                         
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
                                 f.common_name, f.fcode FROM assets AS a INNER JOIN \
