@@ -311,7 +311,7 @@ def asset_report():
                 session['facility_name'] = facility_data
                 cur.close()
                 conn.close()
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('asset_report'))
                 
         else:
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
