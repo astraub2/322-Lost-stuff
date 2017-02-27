@@ -286,10 +286,9 @@ def asset_report():
                 cur = conn.cursor()
                 if facility== '':
                         #no specified facility
-                        
-                       cur.execute('SELECT a.asset_tag, a.description, f.facility_common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.asset_pk=aa.asset_fk \
-			INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL);', (date, date))
-	
+                        cur.execute('SELECT a.asset_tag, a.description, f.facility_common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.asset_pk=aa.asset_fk \
+                        INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL);', (date, date))
+
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
@@ -314,7 +313,7 @@ def asset_report():
                         #specified facility
                         
                         cur.execute('SELECT a.asset_tag, a.description, f.facility_common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.asset_pk=aa.asset_fk \
-			INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL) AND f.common_name=%s;', (date, date, facility))
+                        INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL) AND f.common_name=%s;', (date, date, facility))
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
