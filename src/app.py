@@ -223,14 +223,10 @@ def dispose_asset():
                         return render_template('asset_AD.html')
                 
                 else:
-                        cur.execute('SELECT assets_pk FROM assets WHERE asset_tag=%s', (asset_tag,))
-                        try:
-                                pk = cur.fetchone()
-                        except ProgrammingError:
-                                pk = None
+                        
                         #update dispose on asset and change asset_at
                         cur.execute('UPDATE assets SET disposed_dt=%s WHERE asset_tag=%s;', (dispose_dt, asset_tag))
-                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s))' (dispose_dt, asset_tag))
+                        #cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s))' (dispose_dt, asset_tag))
                         return redirect(url_for('dashboard'))
                         
         else:
