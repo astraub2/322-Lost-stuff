@@ -278,7 +278,7 @@ def dispose_asset():
                         return render_template('dispose_asset.html')
                         
 @app.route('/asset_report', methods = ['GET', 'POST'])
-def report():    
+def asset_report():    
         if request.method == 'POST':
                 date = request.form['dt']
                 facility = request.form['facility']
