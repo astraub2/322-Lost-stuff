@@ -208,7 +208,7 @@ def dispose_asset():
                 cur = conn.cursor()
                 asset_tag = request.form['asset_tag']
                 dispose_dt = request.form['dispose_dt']
-                cur.execute('SELECT dispoded_dt FROM assets WHERE asset_tag=%s', (asset_tag,))
+                cur.execute('SELECT disposed_dt FROM assets WHERE asset_tag=%s', (asset_tag,))
                 try:
                         res = cur.fetchone()
                 except ProgrammingError:
