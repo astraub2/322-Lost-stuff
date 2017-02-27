@@ -111,7 +111,7 @@ def add_facility():
                         cur.close()
                         conn.close()
                         session['common_name'] = common_name
-                        return redirect(url_for('add_facility.html'))
+                        return redirect(url_for('add_facility'))
                 else:
                         conn.commit()
                         cur.close()
@@ -230,8 +230,7 @@ def dispose_asset():
                                 pk = None
                         #update dispose on asset and change asset_at
                         cur.execute('UPDATE assets SET disposed_dt=%s WHERE asset_tag=%s;', (dispose_dt, asset_tag))
-                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE depart_dt IS NULL FROM asset_at WHERE asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s)) \
-				AND asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s);', (dispose_dt, asset_tag, asset_tag))
+                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s))' (dispose_dt, asset_tag))
                         return redirect(url_for('dashboard'))
                         
         else:
