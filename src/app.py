@@ -289,7 +289,7 @@ def asset_report():
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
                                 f.common_name, f.fcode FROM assets AS a INNER JOIN \
                                 asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
-                                ON f.facilities_pk=aa.facility_fk ORDER BY aa.arrive_dt ASC WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s ;', (date, date,))
+                                ON f.facilities_pk=aa.facility_fk WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s ;', (date, date,))
 
                         try:
                                 result = cur.fetchall()
