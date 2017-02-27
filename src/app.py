@@ -285,11 +285,40 @@ def asset_report():
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 if facility== '':
+                        #no specified facility
                         
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
                                 f.common_name, f.fcode FROM assets AS a INNER JOIN \
                                 asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
                                 ON f.facilities_pk=aa.facility_fk WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s ;', (date, date,))
+
+                        try:
+                                result = cur.fetchall()
+                        except ProgrammingError:
+                                result = None
+
+                        asset_rreport = []
+                        for r in result:
+                                asset_rreport.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
+                        session['asset_rreport'] = asset_rreport
+                        cur.execute('SELECT common_name FROM facilities;')
+                        res = cur.fetchall()
+                        facility_data = [] 
+                        for r in res:
+                                row=dict()
+                                row['common_name']=r[0]
+                                facility_data.append(row)
+                        session['facility_name'] = facility_data
+                        cur.close()
+                        conn.close()
+                        return render_template('asset_report.html')
+                else:
+                        #specified facility
+                        
+                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
+                                f.common_name, f.fcode FROM assets AS a INNER JOIN \
+                                asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
+                                ON f.facilities_pk=aa.facility_fk WHERE aa.depart_dt>=%s AND aa.arrive_dt<= %s AND f.common_name=%s;', (date, date,facility,))
 
                         try:
                                 result = cur.fetchall()
