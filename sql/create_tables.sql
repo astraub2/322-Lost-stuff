@@ -1,7 +1,7 @@
 
 --I made user_pk and logged_in variables for future accesability
 --I limeted user name and password to 16 char according
---to specification
+--to specificationroles
 --following tables will likely come in handy:
 create table users
 (user_pk serial primary key,
@@ -27,7 +27,8 @@ role_name varchar(255));
 create table assets
 (assets_pk serial primary key,
  asset_tag varchar(16),
- alt_description varchar(255));
+ alt_description varchar(255),
+ disposed_dt timestamp DEFAULT NULL);
 
 create table facilities
 (facilities_pk serial primary key,
@@ -41,5 +42,5 @@ create table asset_at
 	(asset_fk INT,
 		facility_fk integer,
 		arrive_dt TIMESTAMP,
-		depart_dt TIMESTAMP);
+		depart_dt TIMESTAMP DEFAULT NULL);
 
