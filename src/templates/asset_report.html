@@ -10,6 +10,7 @@
 				<dd><input type='date' name='dt' value='1999-01-01'>
 				<dt>Asset Location:
 				<dd><select name='facility'>
+					<option value=''>
 					{% for entry in session.facility_name %}
 					<option value='{{entry.common_name}}'>{{entry.common_name}}</option>
 					{% endfor %}
