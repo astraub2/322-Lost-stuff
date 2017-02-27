@@ -287,11 +287,9 @@ def asset_report():
                 if facility== '':
                         #no specified facility
                         
-                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
-                                f.common_name, f.fcode FROM assets AS a INNER JOIN \
-                                asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
-                                ON f.facilities_pk=aa.facility_fk WHERE a.disposed_dt>=%s OR a.disposed_dt=NULL AND aa.arrive_dt<= %s ;', (date, date,))
-
+                       cur.execute('SELECT a.asset_tag, a.description, f.facility_common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.asset_pk=aa.asset_fk \
+			INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL);', (date, date))
+	
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
@@ -315,11 +313,8 @@ def asset_report():
                 else:
                         #specified facility
                         
-                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
-                                f.common_name, f.fcode FROM assets AS a INNER JOIN \
-                                asset_at AS aa ON aa.asset_fk=a.assets_pk INNER JOIN facilities AS f \
-                                ON f.facilities_pk=aa.facility_fk WHERE a.disposed_dt>=%s OR a.disposed_dt=NULL AND aa.arrive_dt<= %s AND f.common_name=%s;', (date, date,facility,))
-
+                        cur.execute('SELECT a.asset_tag, a.description, f.facility_common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.asset_pk=aa.asset_fk \
+			INNER JOIN facilities AS f ON f.facility_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL) AND f.common_name=%s;', (date, date, facility))
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
