@@ -298,13 +298,10 @@ def asset_report():
                 for r in result:
                         asset_rreport.append(dict(zip(('asset_tag', 'description', 'arrive_dt', 'depart_dt', 'facility_name', 'facility_fcode'), r)) )  
                 session['asset_rreport'] = asset_rreport
-
-                
                 cur.execute('SELECT common_name FROM facilities;')
                 res = cur.fetchall()
                 facility_data = [] 
                 for r in res:
-                        print(r)
                         row=dict()
                         row['common_name']=r[0]
                         facility_data.append(row)
@@ -313,14 +310,13 @@ def asset_report():
                 conn.close()
                 return redirect(url_for('asset_report'))
                 
-        else:
+        if request.method == 'GET':
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 cur.execute('SELECT common_name FROM facilities;')
                 res = cur.fetchall()
                 facility_data = [] 
                 for r in res:
-                        print(r)
                         row=dict()
                         row['common_name']=r[0]
                         facility_data.append(row)
