@@ -311,6 +311,8 @@ def asset_report():
                 return redirect(url_for('asset_report'))
                 
         if request.method == 'GET':
+                asset_rreport = []
+                session['asset_rreport'] = asset_rreport
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 cur.execute('SELECT common_name FROM facilities;')
