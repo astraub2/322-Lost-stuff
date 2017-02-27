@@ -286,7 +286,7 @@ def asset_report():
                 cur = conn.cursor()
                 if facility== '':
                         #no specified facility
-                        cur.execute('SELECT a.asset_tag, a.alt_description, f.common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.assets_pk=aa.asset_fk \
+                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, f.common_name, f.fcode FROM assets AS a INNER JOIN asset_at AS aa ON a.assets_pk=aa.asset_fk \
                         INNER JOIN facilities AS f ON f.facilities_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL);', (date, date))
 
                         try:
@@ -312,7 +312,7 @@ def asset_report():
                 else:
                         #specified facility
                         
-                        cur.execute('SELECT a.asset_tag, a.alt_description, f.common_name, aa.arrive_dt, aa.depart_dt FROM assets AS a INNER JOIN asset_at AS aa ON a.assets_pk=aa.asset_fk \
+                        cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, f.common_name, f.fcode FROM assets AS a INNER JOIN asset_at AS aa ON a.assets_pk=aa.asset_fk \
                         INNER JOIN facilities AS f ON f.facilities_pk=aa.facility_fk WHERE aa.arrive_dt<=%s AND (aa.depart_dt>=%s OR aa.depart_dt IS NULL) AND f.common_name=%s;', (date, date, facility))
                         try:
                                 result = cur.fetchall()
