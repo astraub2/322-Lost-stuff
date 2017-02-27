@@ -42,5 +42,5 @@ create table asset_at
 	(asset_fk INT,
 		facility_fk integer,
 		arrive_dt TIMESTAMP,
-		depart_dt TIMESTAMP DEFAULT NULL);
+		depart_dt timestamp DEFAULT NULL);
 
