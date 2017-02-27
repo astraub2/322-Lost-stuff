@@ -108,7 +108,7 @@ def add_facility():
                         cur.close()
                         conn.close()
                         session['common_name'] = common_name
-                        return render_template('valid_facility.html')
+                        return render_template('add_facility.html')
                 else:
                         conn.commit()
                         cur.close()
@@ -214,8 +214,15 @@ def dispose_asset():
                 if res == None:
                         cur.close()
                         conn.close()
-                        return render_template('add_DNE.html')
+                        return render_template('asset_DNE.html')
                 else:
+                        cur.execute('SELECT assets_pk FROM assets WHERE asset_tag=%s', (asset_tag,))
+                        try:
+                                pk = cur.fetchone()
+                        except ProgrammingError:
+                                pk = None
+                        #update dispose on asset and change asset_at
+                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=%s'(dispose_dk, pk,))
                         return render_template('asset_disposed.html')
                         
         else:
@@ -229,7 +236,7 @@ def dispose_asset():
                         result = None
 
                 if result != ('Logistics Officer',):
-                        print (result)
+                        #print (result)
                         return render_template('invalid_credentials.html')
                 else:
                         cur.execute('SELECT a.asset_tag, a.alt_description, aa.arrive_dt, aa.depart_dt, \
