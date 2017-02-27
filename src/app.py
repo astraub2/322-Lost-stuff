@@ -281,7 +281,9 @@ def dispose_asset():
 def asset_report():    
         if request.method == 'POST':
                 date = request.form['dt']
+                session['report_date'] = date
                 facility = request.form['facility']
+                session['report_name'] = facility
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 if facility== '':
