@@ -1,0 +1,47 @@
+<html>
+	<head><title>LOST Reports</title></head>
+	<body>
+	<h1>Lost Reports</h1>
+	
+<h2>Please Enter Report Parameters:</h2>
+		<form action="{{url_for('add_asset')}}" method='POST'>
+			<dl>
+				Asset Inquiry Dtae:
+				<dd><input type='date' name='dt' value='1999-01-01'>
+				<dt>Asset Location:
+				<dd><select name='facility'>
+					{% for entry in session.facility_name %}
+					<option value='{{entry.common_name}}'>{{entry.common_name}}</option>
+					{% endfor %}
+					</select>
+				<dt>
+				<br>
+				<dd><input type='submit' value='Generate Report'>
+			</dl>
+		</form> <br>
+
+		<br>
+		<h2>Report Results:</h2>
+		<table>
+		<tb>ID      |</tb>
+		<tb>Name    |</tb>
+		<tb>Location    |</tb>
+		<tb>Fcode |</tb>
+		<tb>Arrive                 |</tb>
+		<tb>Depart                 </tb>
+		</table>
+		<table>
+		<br>
+ {% for entry in session.asset_rreport %}
+			<tr>
+				<td>{{entry.asset_tag}}</td>
+				<td>|{{entry.description}}</td>
+				<td>|{{entry.facility_name}}</td>
+				<td>|{{entry.facility_fcode}}</td>
+				<td>|{{entry.arrive_dt}}</td>
+				<td>|{{entry.depart_dt}}</td>
+			<tr>
+			{% endfor %}
+</table> 
+		<a href="{{url_for('dashboard')}}">Dashboard</a>
+	</body>
