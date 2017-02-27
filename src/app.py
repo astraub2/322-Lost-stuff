@@ -226,7 +226,7 @@ def dispose_asset():
                         
                         #update dispose on asset and change asset_at
                         cur.execute('UPDATE assets SET disposed_dt=%s WHERE asset_tag=%s;', (dispose_dt, asset_tag))
-                        #cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=(SELECT asset_pk FROM assets WHERE asset_tag=%s))' (dispose_dt, asset_tag))
+                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=1)' (dispose_dt,))
                         return redirect(url_for('dashboard'))
                         
         else:
