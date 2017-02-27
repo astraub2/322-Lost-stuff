@@ -308,7 +308,7 @@ def asset_report():
                 session['facility_name'] = facility_data
                 cur.close()
                 conn.close()
-                return render_template('asset_report'))
+                return render_template('asset_report')
                 
         if request.method == 'GET':
                 asset_rreport = []
