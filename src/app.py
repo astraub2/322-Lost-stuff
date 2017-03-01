@@ -90,7 +90,6 @@ def add_facility():
         common_name = request.form['common_name']
         fcode = request.form['fcode']
         location=request.form['location']
-        print('test 1')
         cur.execute('SELECT common_name FROM facilities WHERE common_name=%s', (common_name,))
         try:
                 result = cur.fetchone()
@@ -98,14 +97,12 @@ def add_facility():
                 result = None
 
         if result == None:
-                print('test 2')
                 cur.execute('SELECT fcode FROM facilities WHERE fcode=%s', (fcode,))
                 try:
                         result2 = cur.fetchone()
                 except ProgrammingError:
                         result2 = None
                 if result2 == None:
-                        print('test 3')
                         cur.execute('INSERT INTO facilities(common_name, fcode, location) VALUES(%s, %s, %s)', (common_name,fcode, location))
                         conn.commit()
                         cur.close()
@@ -266,7 +263,7 @@ def dispose_asset():
                         res = cur.fetchall()
                         facility_data = [] 
                         for r in res:
-                                print(r)
+                                #print(r)
                                 row=dict()
                                 row['common_name']=r[0]
                                 facility_data.append(row)

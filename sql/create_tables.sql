@@ -44,3 +44,31 @@ create table asset_at
 		arrive_dt TIMESTAMP,
 		depart_dt timestamp DEFAULT NULL);
 
+--tracks where the assets are transering
+--track requests with a request id
+--track who requests, who approves, and time of request and approval
+--track source and destination of asset, and asset_fk
+create table transfer
+	(	transfer_pk serial primary key,
+		asset_fk INT,
+		requestor_fk INT REFERENCES users (user_pk),
+		approver_fk INT REFERENCES users (user_pk),
+		request_dt timestamp DEFAULT NULL,
+		approve_dt timestamp DEFAULT NULL,
+		source_fk INT REFERENCES facilities (facilities_pk),
+		destination_fk INT REFERENCES facilities (facilities_pk),
+		
+
+
+		);
+--tracks what asset, where its going, and time of load and unload
+create table transit
+	(	asset_fk INT,
+		transfer_fk REFERENCES transfer (transfer_pk);
+		source_fk INT REFERENCES facilities (facilities_pk),
+		destination_fk INT REFERENCES facilities (facilities_pk),
+		load_dt timestamp DEFAULT NULL,
+		unload_dt timestamp DEFAULT NULL,
+
+
+		);
