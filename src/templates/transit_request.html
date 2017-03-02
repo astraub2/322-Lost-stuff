@@ -3,16 +3,34 @@
 	<body>
 	<h1>Transit Request:</h1>
 	<br>
+	<h2>Current Assets:</h2>
+		<table>
+		<tb>ID      |</tb>
+		<tb>Name    |</tb>
+		<tb>Location    |</tb>
+		<tb>Fcode |</tb>
+		<tb>Arrive                 |</tb>
+		<tb>Depart                 </tb>
+		</table>
+		<table>
+		<br>
+ {% for entry in session.asset_report %}
+			<tr>
+				<td>{{entry.asset_tag}}</td>
+				<td>|{{entry.description}}</td>
+				<td>|{{entry.facility_name}}</td>
+				<td>|{{entry.facility_fcode}}</td>
+				<td>|{{entry.arrive_dt}}</td>
+				<td>|{{entry.depart_dt}}</td>
+			<tr>
+			{% endfor %}
+</table> 
 		
 <h2>Please Enter Transit Request:</h2>
 		<form action="{{url_for('transit_request')}}" method='POST'>
 			<dl>
-				<dt>Asset Tag:
-				<dd><select name='asset_tags'>
-					{% for entry in session.asset_tags %}
-					<option value='{{entry.tag}}'>{{entry.tag}}</option>
-					{% endfor %}
-					</select>
+				<dt>Asset Tag (max 16 characters):
+				<dd><input type='text' name='asset_tag' maxlength=16>
 				<dt>
 				Request Date:
 				<dd><input type='date' name='dispose_dt' value='1999-01-01'>
