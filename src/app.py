@@ -360,7 +360,7 @@ def transit_request():
         if request.method == 'POST':
                 print('pass 1');
                 asset_tag=request.form['asset_tag']
-                date = request.form['date']
+                date = request.form['dispose_dt']
                 source = request.form['source']
                 print('pass 2');
                 destination=request.form['destination']
