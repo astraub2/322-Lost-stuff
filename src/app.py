@@ -358,6 +358,7 @@ def asset_report():
 @app.route('/transit_request', methods = ['GET', 'POST'])
 def transit_request():
         if request.method == 'POST':
+                print('pass 1');
                 asset_tag=request.form['asset_tag']
                 date = request.form['date']
                 source = request.form['source']
@@ -365,13 +366,14 @@ def transit_request():
                 username=session['username']
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
-                
+                print('pass 2');
                 ##add transitrequest to DB
                 cur.execute('INSERT INTO transfer (asset_fk, requestor_fk, request_dt, source_fk, destination_fk) VALUES\
                             ((SELECT asset_pk FROM assets WHERE asset_tag= %s), (SELECT user_pk FROM users WHERE username=%s),\
                             %s, (SELECT facility_pk FROM facilities WHERE common_name=%s), SELECT facility_pk FROM facilities WHERE common_name=%s))\
                             ;', (asset_tag, username, date, source, destination))
                 conn.commit()
+                print('pass 3');
                 cur.close()
                 conn.close()
                 session['transfer_asset']=asset_tag
