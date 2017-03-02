@@ -397,7 +397,7 @@ def transit_request():
                         for r in res:
                                 row=dict()
                                 row['tag']=r[0]
-                                asset_tag.append(tag)
+                                asset_tag.append(r)
                                 
 
                         session['asset_tags'] = asset_tag
