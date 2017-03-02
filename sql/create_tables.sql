@@ -57,7 +57,6 @@ create table transfer
 		approve_dt timestamp DEFAULT NULL,
 		source_fk INT REFERENCES facilities (facilities_pk),
 		destination_fk INT REFERENCES facilities (facilities_pk),
-		
 
 
 		);
