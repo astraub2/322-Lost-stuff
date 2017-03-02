@@ -358,7 +358,7 @@ def asset_report():
 @app.route('/transit_request', methods = ['GET', 'POST'])
 def transit_request():
         if request.method == 'POST':
-                asset_tag=request.form['asset_tags']
+                asset_tag=request.form['asset_tag']
                 date = request.form['date']
                 source = request.form['source']
                 destination=request.form['destination']
