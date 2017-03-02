@@ -9,8 +9,8 @@
 			<dl>
 				<dt>Asset Tag:
 				<dd><select name='asset_tags'>
-					{% for entry in session.facility_name %}
-					<option value='{{entry.asset_tags}}'>{{entry.asset_tags}}</option>
+					{% for entry in session.asset_tags %}
+					<option value='{{entry.tag}}'>{{entry.tag}}</option>
 					{% endfor %}
 					</select>
 				<dt>
