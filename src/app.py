@@ -413,16 +413,16 @@ def approve_req():
                 approval = request.form['approval']
                 username=session['username']
                 cur.execute('SELECT transfer_pk FROM transfer WHERE transfer_pk=%s', (request_id,))
-          try:
+                try:
                         result = cur.fetchone()
                 except ProgrammingError:
                         result = None
 
-                if result =None:
+                if result ==None:
                         return render_template('transet_reqDNE.html')
                 else:
                         print(approval)
-                        if approval='Confirm':
+                        if approval=='Confirm':
                                 return render_template('transet_reqsub.html')
                         else:
                                 return render_template('transet_reqden.html')
