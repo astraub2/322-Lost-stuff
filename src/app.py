@@ -426,7 +426,7 @@ def approve_req():
                         return render_template('invalid_credentials2.html')
                 else:
                         print('pass 1')
-                        cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer;')
+                        cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer WHERE approve_dt IS NULL ;')
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
