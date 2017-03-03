@@ -429,7 +429,7 @@ def approve_req():
                         request_id = [] 
                         for r in res:
                                 print(r)
-                                current_req.append(dict(zip(('request_id'), r)) )  
+                                request_id.append(dict(zip(('request_id'), r)) )  
                     
                                 
 
