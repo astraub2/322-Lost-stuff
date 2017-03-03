@@ -420,6 +420,7 @@ def approve_req():
                         result = cur.fetchone()
                 except ProgrammingError:
                         result = None
+                print(result)
 
                 if result != ('Facilities Officer',):
                         return render_template('invalid_credentials2.html')
