@@ -431,7 +431,8 @@ def approve_req():
                                 result = cur.fetchall()
                         except ProgrammingError:
                                 result = None
-                        print(result+'!')
+                        print(result)
+                        print('!')
 
                         current_req = []
                         for r in result:
