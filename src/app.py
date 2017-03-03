@@ -358,11 +358,9 @@ def asset_report():
 @app.route('/transit_request', methods = ['GET', 'POST'])
 def transit_request():
         if request.method == 'POST':
-                print('pass 1');
                 asset_tag=request.form['asset_tag']
                 date = request.form['dispose_dt']
                 source = request.form['source']
-                print('pass 2');
                 destination=request.form['destination']
                 username=session['username']
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
@@ -374,7 +372,6 @@ def transit_request():
                             %s, (SELECT facilities.facilities_pk FROM facilities WHERE common_name=%s), (SELECT facilities.facilities_pk FROM facilities WHERE common_name=%s))\
                             ;', (asset_tag, username, date, source, destination))
                 conn.commit()
-                print('pass 3');
                 cur.close()
                 conn.close()
                 session['transfer_asset']=asset_tag
