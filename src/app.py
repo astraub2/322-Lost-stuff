@@ -428,9 +428,10 @@ def approve_req():
                         res = cur.fetchall()
                         request_id = [] 
                         for r in res:
-                                row=dict()
-                                row['request_id']=r[0]
-                                request_id.append(r)
+                                for r in result:
+                                print(r)
+                                current_req.append(dict(zip(('request_id'), r)) )  
+                    
                                 
 
                         session['requests'] = request_id
