@@ -365,9 +365,7 @@ def transit_request():
                 username=session['username']
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
-                ##check if asset is at the source facility
-                #cur.execute('SELECT facility_fk FROM asset_at WHERE asset_fk=%s;',(asset_tag,))
-                
+                  
                 ##add transitrequest to DB
                 cur.execute('INSERT INTO transfer (asset_fk, requestor_fk, request_dt, source_fk, destination_fk) VALUES\
                             ((SELECT assets.assets_pk FROM assets WHERE asset_tag= %s), (SELECT users.user_pk FROM users WHERE username=%s),\
@@ -409,6 +407,28 @@ def approve_req():
         if request.method == 'POST':
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
+                response_dt=request.form['response_dt']
+                request_id = request.form['request_id']
+                session['request_approval'] = request_id
+                approval = request.form['approval']
+                username=session['username']
+                cur.execute('SELECT transfer_pk FROM transfer WHERE transfer_pk=%s', (request_id,))
+          try:
+                        result = cur.fetchone()
+                except ProgrammingError:
+                        result = None
+
+                if result =None:
+                        return render_template('transet_reqDNE.html')
+                else:
+                        print(approval)
+                        if approval='Confirm':
+                                return render_template('transet_reqsub.html')
+                        else:
+                                return render_template('transet_reqden.html')
+                        
+                        
+                
                 
                 
         else:
