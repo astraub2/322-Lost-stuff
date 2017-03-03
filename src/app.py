@@ -365,7 +365,13 @@ def transit_request():
                 username=session['username']
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
-                
+                ##check if asset is at the source facility
+                cur.execute('SELECT facility_fk FROM asset_at WHERE asset_fk=%s',(asset_tag))
+                try:
+                        result = cur.fetchone()
+                except ProgrammingError:
+                        result = None
+                print(result)
                 ##add transitrequest to DB
                 cur.execute('INSERT INTO transfer (asset_fk, requestor_fk, request_dt, source_fk, destination_fk) VALUES\
                             ((SELECT assets.assets_pk FROM assets WHERE asset_tag= %s), (SELECT users.user_pk FROM users WHERE username=%s),\
