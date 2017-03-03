@@ -426,12 +426,11 @@ def approve_req():
                                 return render_template('dashboard.html')
                         else:
                                 cur.execute('DELETE FROM transfer WHERE transfer_pk=%s', (request_id,))
+                                conn.commit()
+                                cur.close()
+                                conn.close()
                                 return render_template('dashboard.html')
                         
-                        
-                
-                
-                
         else:
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
@@ -457,6 +456,8 @@ def approve_req():
                                 current_req.append(dict(zip(('req_tag', 'asset_id', 'requestor', 'source', 'destination', 'request_dt'), r)) )  
                         session['current_req'] = current_req
                         conn.commit()
+                        cur.close()
+                        conn.close()
                         return render_template('approve_req.html')
                         
         
