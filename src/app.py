@@ -429,11 +429,12 @@ def approve_req():
                         request_id = [] 
                         for r in res:
                                 row=dict()
-                                row['tag']=r[0]
+                                row['request_id']=r[0]
                                 request_id.append(r)
                                 
 
-                        session['request_id'] = request_id
+                        session['requests'] = request_id
+                        conn.commit()
                         cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer WHERE approve_dt IS NULL ;')
                         try:
                                 result = cur.fetchall()
@@ -445,6 +446,7 @@ def approve_req():
                                 print(r)
                                 current_req.append(dict(zip(('req_tag', 'asset_id', 'requestor', 'source', 'destination', 'request_dt'), r)) )  
                         session['current_req'] = current_req
+                        conn.commit()
                         return render_template('approve_req.html')
                         
         
