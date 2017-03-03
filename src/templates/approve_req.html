@@ -5,23 +5,24 @@
 	<br>
 	<h2>Current Requests:</h2>
 		<table>
-		<tb>ID      |</tb>
-		<tb>Name    |</tb>
-		<tb>Location    |</tb>
-		<tb>Fcode |</tb>
-		<tb>Arrive                 |</tb>
-		<tb>Depart                 </tb>
+		<tb>Request ID      |</tb>
+		<tb>Asset    |</tb>
+		<tb>Requestor    |</tb>
+		<tb>Source    |</tb>
+		<tb>Destination |</tb>
+		<tb>Request_dt                 |</tb>
 		</table>
 		<table>
 		<br>
- {% for entry in session.asset_report %}
+ {% for entry in session.current_req %}
 			<tr>
-				<td>{{entry.asset_tag}}</td>
-				<td>|{{entry.description}}</td>
-				<td>|{{entry.facility_name}}</td>
-				<td>|{{entry.facility_fcode}}</td>
-				<td>|{{entry.arrive_dt}}</td>
-				<td>|{{entry.depart_dt}}</td>
+				<td>{{entry.req_tag}}</td>
+				<td>{{entry.asset_id}}</td>
+				<td>|{{entry.requestor}}</td>
+				<td>|{{entry.source}}</td>
+				<td>|{{entry.destination}}</td>
+				<td>|{{entry.request_dt}}</td>
+				
 			<tr>
 			{% endfor %}
 </table> 
