@@ -421,11 +421,12 @@ def approve_req():
                 if result ==None:
                         return render_template('transit_reqDNE.html')
                 else:
-                        print(approval)
                         if approval=='Confirm':
-                                return render_template('transit_reqsub.html')
+
+                                return render_template('dashboard.html')
                         else:
-                                return render_template('transit_reqden.html')
+                                cur.execute('DELETE FROM transfer WHERE transfer_pk=%s;'), (request_id,)
+                                return render_template('dashboard.html')
                         
                         
                 
