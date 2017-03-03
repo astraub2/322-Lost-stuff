@@ -433,6 +433,7 @@ def approve_req():
 
                         current_req = []
                         for r in result:
+                                print(r)
                                 current_req.append(dict(zip(('req_tag', 'asset_id', 'requestor', 'source', 'destination', 'request_dt'), r)) )  
                         session['current_req'] = current_req
                         return render_template('approve_req.html')
