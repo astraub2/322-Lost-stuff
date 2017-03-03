@@ -430,7 +430,7 @@ def approve_req():
                         for r in res:
                                 row=dict()
                                 row['tag']=r[0]
-                                asset_tag.append(r)
+                                request_id.append(r)
                                 
 
                         session['request_id'] = request_id
