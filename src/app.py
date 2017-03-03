@@ -366,7 +366,7 @@ def transit_request():
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
                 ##check if asset is at the source facility
-                cur.execute('SELECT facility_fk FROM asset_at WHERE asset_fk=%s',(asset_tag))
+                cur.execute('SELECT facility_fk FROM asset_at WHERE asset_fk=%s;',(asset_tag,))
                 try:
                         result = cur.fetchone()
                 except ProgrammingError:
