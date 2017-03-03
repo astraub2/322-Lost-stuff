@@ -420,19 +420,25 @@ def approve_req():
                         result = cur.fetchone()
                 except ProgrammingError:
                         result = None
-                print(result)
 
                 if result != ('Facilities Officer',):
                         return render_template('invalid_credentials2.html')
                 else:
-                        print('pass 1')
+                        cur.execute('SELECT transfer_pk FROM transfer;')
+                        res = cur.fetchall()
+                        request_id = [] 
+                        for r in res:
+                                row=dict()
+                                row['tag']=r[0]
+                                asset_tag.append(r)
+                                
+
+                        session['request_id'] = request_id
                         cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer WHERE approve_dt IS NULL ;')
                         try:
                                 result = cur.fetchall()
                         except ProgrammingError:
                                 result = None
-                        print(result)
-                        print('!')
 
                         current_req = []
                         for r in result:
