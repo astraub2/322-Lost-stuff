@@ -423,7 +423,7 @@ def approve_req():
                 else:
                         print(approval)
                         if approval=='Confirm':
-                                return render_template('transet_reqsub.html')
+                                return render_template('transit_reqsub.html')
                         else:
                                 return render_template('transet_reqden.html')
                         
