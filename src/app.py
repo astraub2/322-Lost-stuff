@@ -419,7 +419,7 @@ def approve_req():
                         result = None
 
                 if result ==None:
-                        return render_template('transet_reqDNE.html')
+                        return render_template('transit_reqDNE.html')
                 else:
                         print(approval)
                         if approval=='Confirm':
