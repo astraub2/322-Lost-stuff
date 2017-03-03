@@ -429,8 +429,7 @@ def approve_req():
                         request_id = [] 
                         for r in res:
                                 print(r)
-                                request_id.append(dict(zip(('request_id'), r)) )  
-                    
+                                request_id.append(dict(zip(('request_id'), r)) )            
                                 
 
                         session['requests'] = request_id
@@ -443,7 +442,6 @@ def approve_req():
 
                         current_req = []
                         for r in result:
-                                print(r)
                                 current_req.append(dict(zip(('req_tag', 'asset_id', 'requestor', 'source', 'destination', 'request_dt'), r)) )  
                         session['current_req'] = current_req
                         conn.commit()

@@ -36,7 +36,7 @@
 				<dt>Request ID:
 				<dd><select name='requests'>
 					{% for entry in session.requests %}
-					<option value='{{entry}}'>{{entry}}</option>
+					<option value='{{entry.request_id}}'>{{entry.request_id}}</option>
 					{% endfor %}
 					</select>
 				<dt>
