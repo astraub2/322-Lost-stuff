@@ -52,7 +52,7 @@ create table transfer
 	(	transfer_pk serial primary key,
 		asset_fk INT,
 		requestor_fk INT REFERENCES users (user_pk),
-		approver_fk INT REFERENCES users (user_pk),
+		approver_fk INT REFERENCES users (user_pk) DEFAULT NULL,
 		request_dt timestamp DEFAULT NULL,
 		approve_dt timestamp DEFAULT NULL,
 		source_fk INT REFERENCES facilities (facilities_pk),

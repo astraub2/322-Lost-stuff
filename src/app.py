@@ -404,6 +404,39 @@ def transit_request():
 
                         session['asset_tags'] = asset_tag
                         return render_template('transit_request.html')
+@app.route('/approve_req', methods = ['GET', 'POST'])
+def approve_req():
+        if request.method == 'POST':
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                
+                
+        else:
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                username=session['username']
+                cur.execute('SELECT role_name FROM users JOIN roles ON users.role_fk=roles.role_pk WHERE username=%s', (username,))
+                try:
+                        result = cur.fetchone()
+                except ProgrammingError:
+                        result = None
+
+                if result != ('Facilities Officer',):
+                        return render_template('invalid_credentials2.html')
+                else:
+                        
+                        cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer WHERE approver_fk=NULL;')
+                        try:
+                                result = cur.fetchall()
+                        except ProgrammingError:
+                                result = None
+
+                        current_req = []
+                        for r in result:
+                                current_req.append(dict(zip(('req_tag', 'asset_id', 'requestor', 'source', 'destination', 'request_dt'), r)) )  
+                        session['current_req'] = current_req
+                        
+        
                         
 
 

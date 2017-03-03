@@ -1,0 +1,54 @@
+<html>
+	<head><title>LOST Transit Review</title></head>
+	<body>
+	<h1>Transit Request:</h1>
+	<br>
+	<h2>Current Requests:</h2>
+		<table>
+		<tb>ID      |</tb>
+		<tb>Name    |</tb>
+		<tb>Location    |</tb>
+		<tb>Fcode |</tb>
+		<tb>Arrive                 |</tb>
+		<tb>Depart                 </tb>
+		</table>
+		<table>
+		<br>
+ {% for entry in session.asset_report %}
+			<tr>
+				<td>{{entry.asset_tag}}</td>
+				<td>|{{entry.description}}</td>
+				<td>|{{entry.facility_name}}</td>
+				<td>|{{entry.facility_fcode}}</td>
+				<td>|{{entry.arrive_dt}}</td>
+				<td>|{{entry.depart_dt}}</td>
+			<tr>
+			{% endfor %}
+</table> 
+		
+<h2>Please Enter Transit Request:</h2>
+		<form action="{{url_for('approve_req')}}" method='POST'>
+			<dl>
+				Response Date:
+				<dd><input type='date' name='dispose_dt' value='1999-01-01'>
+				<dt>
+				<dt>Request ID:
+				<dd><select name='requests'>
+					{% for entry in session.requests %}
+					<option value='{{entry.request_id}}'>{{entry.request_id}}</option>
+					{% endfor %}
+					</select>
+				<dt>
+				<dt>Approval:
+				<dd><select name='approval'>
+					
+					<option value=Confirm>Confirm</option>
+					<option value=Deny>Deny</option>
+					
+					</select>
+				<dt>
+				<dd><input type='submit' value='Update'>
+			</dl>
+		</form> <br>
+		<a href="{{url_for('dashboard')}}">Dashboard</a>
+	</body>
