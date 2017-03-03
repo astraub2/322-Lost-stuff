@@ -428,7 +428,6 @@ def approve_req():
                         res = cur.fetchall()
                         request_id = [] 
                         for r in res:
-                                for r in result:
                                 print(r)
                                 current_req.append(dict(zip(('request_id'), r)) )  
                     
