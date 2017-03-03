@@ -425,7 +425,7 @@ def approve_req():
 
                                 return render_template('dashboard.html')
                         else:
-                                cur.execute('DELETE FROM transfer WHERE transfer_pk=%s'), (request_id,))
+                                cur.execute('DELETE FROM transfer WHERE transfer_pk=%s', (request_id,))
                                 return render_template('dashboard.html')
                         
                         
