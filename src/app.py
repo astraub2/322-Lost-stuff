@@ -425,7 +425,7 @@ def approve_req():
                         if approval=='Confirm':
                                 return render_template('transit_reqsub.html')
                         else:
-                                return render_template('transet_reqden.html')
+                                return render_template('transit_reqden.html')
                         
                         
                 
