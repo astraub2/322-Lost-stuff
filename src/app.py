@@ -371,7 +371,7 @@ def transit_request():
                 ##add transitrequest to DB
                 cur.execute('INSERT INTO transfer (asset_fk, requestor_fk, request_dt, source_fk, destination_fk) VALUES\
                             ((SELECT assets.assets_pk FROM assets WHERE asset_tag= %s), (SELECT users.user_pk FROM users WHERE username=%s),\
-                            %s, (SELECT facilities.facility_pk FROM facilities WHERE common_name=%s), (SELECT facilities.facility_pk FROM facilities WHERE common_name=%s))\
+                            %s, (SELECT facilities.facilities_pk FROM facilities WHERE common_name=%s), (SELECT facilities.facilities_pk FROM facilities WHERE common_name=%s))\
                             ;', (asset_tag, username, date, source, destination))
                 conn.commit()
                 print('pass 3');
