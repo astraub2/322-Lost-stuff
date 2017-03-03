@@ -424,16 +424,7 @@ def approve_req():
                 if result != ('Facilities Officer',):
                         return render_template('invalid_credentials2.html')
                 else:
-                        cur.execute('SELECT transfer_pk FROM transfer;')
-                        res = cur.fetchall()
-                        request_id = [] 
-                        for r in res:
-                                print(r)
-                                request_id.append(dict(zip(('request_id'), r)) )            
-                                
-
-                        session['requests'] = request_id
-                        conn.commit()
+                        
                         cur.execute('SELECT transfer_pk, asset_fk, requestor_fk, source_fk, destination_fk, request_dt FROM transfer WHERE approve_dt IS NULL ;')
                         try:
                                 result = cur.fetchall()

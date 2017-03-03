@@ -34,11 +34,7 @@
 				<dd><input type='date' name='dispose_dt' value='1999-01-01'>
 				<dt>
 				<dt>Request ID:
-				<dd><select name='requests'>
-					{% for entry in session.requests %}
-					<option value='{{entry}}'>{{entry}}</option>
-					{% endfor %}
-					</select>
+				<dd><input type='text' name='request_id' maxlength=16>
 				<dt>
 				<dt>Approval:
 				<dd><select name='approval'>
