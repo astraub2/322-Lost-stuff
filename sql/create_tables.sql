@@ -55,13 +55,13 @@ create table transfer
 		approver_fk INT REFERENCES users (user_pk) DEFAULT NULL,
 		request_dt timestamp DEFAULT NULL,
 		approve_dt timestamp DEFAULT NULL,
-		source_fk INT REFERENCES facilities (facilities_pk),
-		destination_fk INT REFERENCES facilities (facilities_pk));
+		source_fk INT,
+		destination_fk INT;
 --tracks what asset, where its going, and time of load and unload
 create table transit
 	(	asset_fk INT,
 		transfer_fk Int REFERENCES transfer (transfer_pk),
-		source_fk INT REFERENCES facilities (facilities_pk),
-		destination_fk INT REFERENCES facilities (facilities_pk),
+		source_fk INT,
+		destination_fk INT,
 		load_dt timestamp DEFAULT NULL,
 		unload_dt timestamp DEFAULT NULL);
