@@ -487,7 +487,7 @@ def update_transit():
                         #print (result)
                         return render_template('invalid_credentials.html')
                 else:
-                        cur.execute('SELECT asset_tag FROM assets JOIN transit WHERE asset_pk=asset_fk WHERE transit.unload_dt IS NULL;')
+                        cur.execute('SELECT asset_tag FROM assets JOIN transit ON asset_pk=asset_fk WHERE transit.unload_dt IS NULL;')
                         res = cur.fetchall()
                         transit_tag = [] 
                         for r in res:
