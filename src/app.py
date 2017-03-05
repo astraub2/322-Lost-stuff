@@ -477,7 +477,7 @@ def update_transit():
                 transit_tags=request.form['transit_tags']
                 action=request.form['action']
                 action_dt=['action_dt']
-                if action='Load':
+                if action=='Load':
                         print('load')
                         
                         return render_template('dashboard.html')
