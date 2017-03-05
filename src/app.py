@@ -493,11 +493,13 @@ def update_transit():
                         for r in res:
                                 row=dict()
                                 row['tag']=r[0]
-                                transit_tag.append(r)
+                                transit_tag.append(row)
                                 
 
                         session['transit_tags'] = transit_tag
                         return render_template('update_transit.html')
+
+                
         
         
                         
