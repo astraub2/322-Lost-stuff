@@ -476,7 +476,7 @@ def update_transit():
                 
                 transit_tags=request.form['transit_tags']
                 action=request.form['action']
-                action_dt=['action_dt']
+                action_dt=request.form['action_dt']
                 if action=='Load':
                         cur.execute('UPDATE transit SET load_dt=%s WHERE asset_fk=(SELECT asset_pk\
                                     FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
