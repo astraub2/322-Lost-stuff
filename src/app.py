@@ -478,7 +478,7 @@ def update_transit():
                 action=request.form['action']
                 action_dt=request.form['action_dt']
                 if action=='Load':
-                        cur.execute('UPDATE transit SET load_dt=%s WHERE asset_fk=(SELECT asset_pk\
+                        cur.execute('UPDATE transit SET load_dt=%s WHERE asset_fk=(SELECT assets_pk\
                                     FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
                         conn.commit()
                         cur.close()
@@ -486,7 +486,7 @@ def update_transit():
                         return render_template('dashboard.html')
 
                 else:
-                        cur.execute('UPDATE transit SET unload_dt=%s WHERE asset_fk=(SELECT asset_pk\
+                        cur.execute('UPDATE transit SET unload_dt=%s WHERE asset_fk=(SELECT assets_pk\
                                     FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
                         conn.commit()
                         cur.close()
