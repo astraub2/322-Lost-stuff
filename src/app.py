@@ -473,6 +473,19 @@ def update_transit():
         if request.method == 'POST':
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
+                response_dt=request.form['response_dt']
+                transit_tags=request.form['transit_tags']
+                action=request.form['action']
+                action_dt=['action_dt']
+                if action='Load':
+                        print('load')
+                        
+                        return render_template('dashboard.html')
+
+                else:
+                        return render_template('dashboard.html')
+                        
+                
         else:
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()

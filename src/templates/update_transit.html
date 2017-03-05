@@ -5,7 +5,7 @@
 	
 		
 <h2>Please Update Transit Progress:</h2>
-		<form action="{{url_for('approve_req')}}" method='POST'>
+		<form action="{{url_for('update_transit')}}" method='POST'>
 			<dl>
 				
 				<dt>Asset Tag:
@@ -16,7 +16,7 @@
 					</select>
 				<dt>
 				<dt>Action:
-				<dd><select name='approval'>
+				<dd><select name='action'>
 					
 					<option value=Load>Load</option>
 					<option value=Unload>Unload</option>
@@ -24,7 +24,7 @@
 					</select>
 				<dt>
 				Action Date:
-				<dd><input type='date' name='response_dt' value='1999-01-01'>
+				<dd><input type='date' name='action_dt' value='1999-01-01'>
 				<dt>
 				<dd><input type='submit' value='Update'>
 			</dl>
