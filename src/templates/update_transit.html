@@ -1,0 +1,32 @@
+<html>
+	<head><title>LOST Update Transit</title></head>
+	<body>
+	<h1>Update Transit:</h1>
+	
+		
+<h2>Please Update Transit Progress:</h2>
+		<form action="{{url_for('approve_req')}}" method='POST'>
+			<dl>
+				Response Date:
+				<dd><input type='date' name='response_dt' value='1999-01-01'>
+				<dt>
+				<dt>Asset ID:
+				<dd><select name='transit_tags'>
+					{% for entry in session.transit_tags %}
+					<option value='{{entry.tag}}'>{{entry.tag}}</option>
+					{% endfor %}
+					</select>
+				<dt>
+				<dt>Action:
+				<dd><select name='approval'>
+					
+					<option value=Load>Confirm</option>
+					<option value=Unload>Deny</option>
+					
+					</select>
+				<dt>
+				<dd><input type='submit' value='Update'>
+			</dl>
+		</form> <br>
+		<a href="{{url_for('dashboard')}}">Dashboard</a>
+	</body>
