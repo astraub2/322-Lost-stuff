@@ -56,7 +56,7 @@ create table transfer
 		request_dt timestamp DEFAULT NULL,
 		approve_dt timestamp DEFAULT NULL,
 		source_fk INT,
-		destination_fk INT;
+		destination_fk INT);
 --tracks what asset, where its going, and time of load and unload
 create table transit
 	(	asset_fk INT,
