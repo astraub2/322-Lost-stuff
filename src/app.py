@@ -422,9 +422,9 @@ def approve_req():
                         return render_template('transit_reqDNE.html')
                 else:
                         if approval=='Confirm':
-                                cur.execute('INSERT INTO transit (asset_fk, transfer_fk, source_fk, destination_fk, load_dt) VALUES\
-                                            ((SELECT asset_fk FROM transfer WHERE transfer_pk=%s), %s, (SELECT source_fk FROM transfer WHERE transfer_pk=%s), (SELECT destination_fk\
-                                             FROM transfer WHERE transfer_pk=%s), %s)', (request_id, request_id,request_id,request_id, response_dt))
+                                cur.execute('INSERT INTO transit (asset_fk, transfer_fk, source_fk, destination_fk) VALUES\
+                                            ((SELECT asset_fk FROM transfer WHERE transfer_pk=%s), %s, (SELECT source_fk FROM transfer WHERE transfer_pk=%s)\
+                                            , %s)', (request_id, request_id,request_id,request_id))
                                 cur.execute('UPDATE transfer SET approver_fk=(SELECT users.user_pk FROM users WHERE username=%s)\
                                             ,approve_dt=%s WHERE transfer_pk=%s;',(username, response_dt, request_id))          
 
@@ -468,7 +468,37 @@ def approve_req():
                         cur.close()
                         conn.close()
                         return render_template('approve_req.html')
-                        
+@app.route('/update_transit', methods = ['GET', 'POST'])
+def update_transit():
+        if request.method == 'POST':
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+        else:
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                username=session['username']
+                cur.execute('SELECT role_name FROM users JOIN roles ON users.role_fk=roles.role_pk WHERE username=%s', (username,))
+                try:
+                        result = cur.fetchone()
+                except ProgrammingError:
+                        result = None
+
+                if result != ('Logistics Officer',):
+                        #print (result)
+                        return render_template('invalid_credentials.html')
+                else:
+                        cur.execute('SELECT asset_tag FROM assets JOIN transit WHERE asset_pk=asset_fk WHERE transit.unload_dt IS NULL;')
+                        res = cur.fetchall()
+                        transit_tag = [] 
+                        for r in res:
+                                row=dict()
+                                row['tag']=r[0]
+                                transit_tag.append(r)
+                                
+
+                        session['transit_tags'] = transit_tag
+                        return render_template('update_transit.html')
+        
         
                         
 
