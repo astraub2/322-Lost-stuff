@@ -476,7 +476,7 @@ def update_transit():
                 transit_tags=request.form['transit_tags']
                 action=request.form['action']
                 action_dt=request.form['action_dt']
-                cur.execute('SELECT assets_pk FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s', (transit_tags))
+                cur.execute('SELECT assets_pk FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s;', (transit_tags,))
                 try:
                         asset_fk = cur.fetchone()
                 except ProgrammingError:
