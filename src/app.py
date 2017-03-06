@@ -536,8 +536,8 @@ def transit_report():
                 cur = conn.cursor()
                 cur.execute('SELECT assets.asset_tag, transit.source_fk, transit.destination_fk,\
                             transit.load_dt, transit.unload_dt FROM assets JOIN transit\
-                            ON assets.assets_pk=transit.asset_fk WHERE (transit.unload_dt<=%s OR\
-                            transit.unload_dt IS NULL) AND transit.load_dt>=%s;', (date, date))
+                            ON assets.assets_pk=transit.asset_fk WHERE (transit.unload_dt>=%s OR\
+                            transit.unload_dt IS NULL) AND transit.load_dt<=%s;', (date, date))
 
                 try:
                         result = cur.fetchall()
