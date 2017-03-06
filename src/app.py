@@ -496,7 +496,7 @@ def update_transit():
                                    FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s),\
                                    (SELECT desination_fk FROM transit WHERE unload_dt=%s AND asset_fk=(SELECT assets_pk\
                                    FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)\
-                                   , %s)', (transit_tags, transit_tags, action_dt, action_dt)
+                                   , %s)', (transit_tags, transit_tags, action_dt, action_dt))
                         conn.commit()
                         cur.close()
                         conn.close()
