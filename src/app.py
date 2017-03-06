@@ -473,14 +473,15 @@ def update_transit():
         if request.method == 'POST':
                 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
                 cur = conn.cursor()
+                transit_tags=request.form['transit_tags']
+                action=request.form['action']
+                action_dt=request.form['action_dt']
                 cur.execute('SELECT assets_pk FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s', (transit_tags))
                 try:
                         asset_fk = cur.fetchone()
                 except ProgrammingError:
                         result = None
-                transit_tags=request.form['transit_tags']
-                action=request.form['action']
-                action_dt=request.form['action_dt']
+                
                 if action=='Load':
                         cur.execute('UPDATE transit SET load_dt=%s WHERE asset_fk=%s',(action_dt, asset_fk))
                         cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=%s',(action_dt, asset_fk))
