@@ -480,6 +480,9 @@ def update_transit():
                 if action=='Load':
                         cur.execute('UPDATE transit SET load_dt=%s WHERE asset_fk=(SELECT assets_pk\
                                     FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
+                        cur.execute('UPDATE asset_at SET depart_dt=%s WHERE asset_fk=(SELECT assets_pk\
+                                    FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
+
                         conn.commit()
                         cur.close()
                         conn.close()
@@ -488,6 +491,12 @@ def update_transit():
                 else:
                         cur.execute('UPDATE transit SET unload_dt=%s WHERE asset_fk=(SELECT assets_pk\
                                     FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)',(action_dt, transit_tags))
+                        conn.commit()
+                        cur.execte('INSERT INTO asset_at(asset_fk, facility_fk, arrive_dt) VALUES((SELECT assets_pk\
+                                   FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s),\
+                                   (SELECT desination_fk FROM transit WHERE unload_dt=%s AND asset_fk=(SELECT assets_pk\
+                                   FROM assets JOIN transit ON assets.assets_pk=transit.asset_fk WHERE asset_tag=%s)\
+                                   , %s)', (transit_tags, transit_tags, action_dt, action_dt)
                         conn.commit()
                         cur.close()
                         conn.close()
