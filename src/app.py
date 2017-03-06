@@ -528,8 +528,37 @@ def update_transit():
 
                         session['transit_tags'] = transit_tag
                         return render_template('update_transit.html')
+@app.route('/transit_report', methods = ['GET', 'POST'])
+def transit_report():    
+        if request.method == 'POST':
+                date = request.form['dt']
+                conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+                cur = conn.cursor()
+                cur.execute('SELECT assets.asset_tag, transit.source_fk, transit.destination_fk,\
+                            transit.load_dt, transit.unload_dt FROM assets JOIN transit\
+                            ON assets.assets_pk=transit.asset_fk WHERE transit.unload_dt<=%s OR\
+                            transit.unload_dt IS NULL AND transit.load_dt>=%s);', (date, date))
 
+                try:
+                        result = cur.fetchall()
+                except ProgrammingError:
+                        result = None
+
+                asset_rreport = []
+                for r in result:
+                        asset_rreport.append(dict(zip(('asset_tag', 'source', 'destination', 'load', 'unload'), r)) )  
+                session['transit_report'] = transit_report
                 
+                cur.close()
+                conn.close()
+                
+                return render_template('transit_report.html')
+                
+        if request.method == 'GET':
+                transit_report = []
+                session['transit_report'] = transit_report
+                
+                return render_template('transit_report.html')
         
         
                         
