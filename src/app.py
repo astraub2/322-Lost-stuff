@@ -544,9 +544,9 @@ def transit_report():
                 except ProgrammingError:
                         result = None
 
-                asset_rreport = []
+                transit_report = []
                 for r in result:
-                        asset_rreport.append(dict(zip(('asset_tag', 'source', 'destination', 'load', 'unload'), r)) )  
+                        transit_report.append(dict(zip(('asset_tag', 'source', 'destination', 'load', 'unload'), r)) )  
                 session['transit_report'] = transit_report
                 
                 cur.close()
