@@ -1,0 +1,40 @@
+<html>
+	<head><title>LOST Transit Reports</title></head>
+	<body>
+	<h1>Lost Transit Reports</h1>
+	
+<h2>Please Enter Transit Report Parameters:</h2>
+		<form action="{{url_for('transfer_report')}}" method='POST'>
+			<dl>
+				Transit Inquiry Date:
+				<dd><input type='date' name='dt' value='1999-01-01'>
+				
+				<br>
+				<dd><input type='submit' value='Generate Report'>
+			</dl>
+		</form> <br>
+
+		<br>
+		<h2>Report Results:</h2>
+		
+		<table>
+		<tb>ID      |</tb>
+		<tb>Source    |</tb>
+		<tb>Destination    |</tb>
+		<tb>Load                |</tb>
+		<tb>Unload               </tb>
+		</table>
+		<table>
+		<br>
+ {% for entry in session.transfer_report %}
+			<tr>
+				<td>{{entry.asset_tag}}</td>
+				<td>|{{entry.source}}</td>
+				<td>|{{entry.destination}}</td>
+				<td>|{{entry.load}}</td>
+				<td>|{{entry.unload}}</td>
+			<tr>
+			{% endfor %}
+</table> 
+		<a href="{{url_for('dashboard')}}">Dashboard</a>
+	</body>
