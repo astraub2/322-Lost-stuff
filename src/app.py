@@ -424,7 +424,7 @@ def approve_req():
                         if approval=='Confirm':
                                 cur.execute('INSERT INTO transit (asset_fk, transfer_fk, source_fk, destination_fk) VALUES\
                                             ((SELECT asset_fk FROM transfer WHERE transfer_pk=%s), %s, (SELECT source_fk FROM transfer WHERE transfer_pk=%s)\
-                                            , %s)', (request_id, request_id,request_id,request_id))
+                                            , (SELECT destination_fk FROM transfer WHERE transfer_pk=%s))', (request_id, request_id,request_id,request_id))
                                 cur.execute('UPDATE transfer SET approver_fk=(SELECT users.user_pk FROM users WHERE username=%s)\
                                             ,approve_dt=%s WHERE transfer_pk=%s;',(username, response_dt, request_id))          
 
