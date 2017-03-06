@@ -496,7 +496,7 @@ def update_transit():
                         conn.commit()
                         cur.execute('INSERT INTO asset_at(asset_fk, facility_fk, arrive_dt) VALUES(%s,\
                                    (SELECT desination_fk FROM transit WHERE unload_dt=%s AND asset_fk=%s)\
-                                   , %s'), (asset_fk, action_dt, asset_fk, action_dt))
+                                   , %s)', (asset_fk, action_dt, asset_fk, action_dt))
                         conn.commit()
                         cur.close()
                         conn.close()
