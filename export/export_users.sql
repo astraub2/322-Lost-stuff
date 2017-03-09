@@ -1,0 +1,1 @@
+SELECT users.username, users.password, roles.rolename, users.active  FROM users JOIN roles ON role_fk=role_pk;

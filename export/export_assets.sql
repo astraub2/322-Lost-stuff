@@ -1,0 +1,1 @@
+SELECT asset_tag, alt_description, asset_at.facility_fk, asset_at.arrive_dt, asset_at.depart_dt FROM assets JOIN asset_at ON asset_fk=assets_pk;
