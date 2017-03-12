@@ -1,11 +1,11 @@
 #!/usr/bin/bash
-if [ "$#" -ne 2]; then
+if [ "$#" -ne 2 ]; then
     echo "Usage: ./.sh <dbname> <output dir>"
     exit;
 fi
 #remove directory if it exists
-if [-d "$2"]; then
-	rm -r $2
+
+rm -r $2
 #remake directory
 fi
 
