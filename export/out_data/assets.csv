@@ -1,0 +1,6 @@
+asset_tag,description,facility,acquired,disposed
+1234,paper,DC123,1999-01-01 00:00:00,NULL
+1235,plastic,DC123,1999-01-01 00:00:00,NULL
+1237,rice,PWHQ,1999-01-01 00:00:00,NULL
+1236,tires,HQ54,1999-01-01 00:00:00,NULL
+1238,pens,PWHQ,1999-01-01 00:00:00,1999-01-01 00:00:00
