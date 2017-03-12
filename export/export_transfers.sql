@@ -1,4 +1,8 @@
-SELECT assets.asset (FROM transfers JOIN assets ON assets_pk=asset_fk), users.username(FROM transfers JOIN users ON requestor_fk=user_pk),\
- users.username(FROM transfers JOIN users ON approver_fk=user_pk), transfer.approve_dt, facilities.fcode(FROM transfers JOIN facilities\
- 	ON facilities_pk=source_fk),facilities.fcode(FROM transfers JOIN facilities ON facilities_pk=destination_fk), transit.load_dt\
- (FROM transit Join transfer ON asset_fk), transit.unload_dt (FROM transit Join transfer ON asset_fk) FROM transfer);
+\echo 'asset_tag,request_by,request_dt,approve_by,approve_dt,source,destination,load_dt,unload_dt'
+
+
+
+SELECT a.asset_tag, ur.username, r.request_dt, ua.username, r.approval_dt, fs.facility_fcode, fd.facility_fcode, t.load_dt, t.unload_dt FROM 
+transfer AS r INNER JOIN users AS ur ON r.requestor_fk=ur.user_pk INNER JOIN transit AS t ON t.transfer_fk=r.transfer_pk INNER JOIN 
+users AS ua ON r.approver_fk=ua.user_pk INNER JOIN assets AS a ON r.asset_fk=a.assets_pk INNER JOIN facilities AS fs ON r.source_fk=fs.facilities_pk
+INNER JOIN facilities AS fd ON r.destination_fk=fd.facilities_pk;
