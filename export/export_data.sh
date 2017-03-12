@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 if [ "$#" -ne 2]; then
     echo "Usage: ./.sh <dbname> <output dir>"
     exit;
