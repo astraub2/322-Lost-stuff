@@ -7,7 +7,6 @@ fi
 
 rm -r $2
 #remake directory
-fi
 
 mkdir $2
 
