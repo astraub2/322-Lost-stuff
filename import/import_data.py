@@ -22,8 +22,12 @@ def import_assets():
                 assets = csv.reader(f, skipinitialspace=True)
                 next(assets)
                 for s in assets:
-                        print("INSERT INTO assets (asset_tag, alt_description, disposed_dt)\
-                              VALUES ('{}', '{}', '{}');".format(s[0], s[1], s[4]))
+                        if s[4]=='NULL':
+                                print("INSERT INTO assets (asset_tag, alt_description)\
+                              VALUES ('{}', '{}');".format(s[0], s[1]))
+                        else:
+                                print("INSERT INTO assets (asset_tag, alt_description, disposed_dt)\
+                                      VALUES ('{}', '{}', '{}');".format(s[0], s[1], s[4]))
                         print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES\
                               ((SELECT assets_pk FROM assets WHERE asset_tag='{}'), (SELECT\
                               facilities_pk FROM facilities WHERE fcode='{}'), '{}');".format(s[0], s[2], s[3]))
