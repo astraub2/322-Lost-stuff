@@ -12,8 +12,8 @@ def import_users():
         with open("users.csv") as f:
                 users = csv.reader(f, skipinitialspace=True)
                 next(users)
-                print('INSERT INTO roles (role_name) VALUES ("Logistics Officer");')
-                print('INSERT INTO roles (role_name) VALUES ("Facilities Officer");')
+                print("INSERT INTO roles (role_name) VALUES ('Logistics Officer');")
+                print("INSERT INTO roles (role_name) VALUES ('Facilities Officer');")
                 for s in users:
                         print("INSERT INTO users (username, password, role_fk, active) VALUES ('{}', '{}',(SELECT role_pk FROM roles WHERE role_name='{}'), '{}');".format(s[0], s[1],s[2], s[3]))
                 
