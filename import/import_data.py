@@ -25,12 +25,16 @@ def import_assets():
                         if s[4]=='NULL':
                                 print("INSERT INTO assets (asset_tag, alt_description)\
                               VALUES ('{}', '{}');".format(s[0], s[1]))
+                                print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES\
+                              ((SELECT assets_pk FROM assets WHERE asset_tag='{}'), (SELECT\
+                              facilities_pk FROM facilities WHERE fcode='{}'), '{}');".format(s[0], s[2], s[3]))
                         else:
                                 print("INSERT INTO assets (asset_tag, alt_description, disposed_dt)\
                                       VALUES ('{}', '{}', '{}');".format(s[0], s[1], s[4]))
-                        print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES\
-                              ((SELECT assets_pk FROM assets WHERE asset_tag='{}'), (SELECT\
-                              facilities_pk FROM facilities WHERE fcode='{}'), '{}');".format(s[0], s[2], s[3]))
+                                print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES\
+                                      ((SELECT assets_pk FROM assets WHERE asset_tag='{}'), (SELECT\
+                                      facilities_pk FROM facilities WHERE fcode='{}'), '{}');".format(s[0], s[2], s[3]))
+                        
 if __name__ == "__main__":
         import_facilities()
         import_assets()
