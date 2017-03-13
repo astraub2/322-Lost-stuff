@@ -6,7 +6,7 @@ def import_facilities():
                 facilities = csv.reader(f, skipinitialspace=True)
                 next(facilities)
                 for s in facilities:
-                        print("INSERT INTO facilities (fcode, common_name) VALUES ('{}', '{}');".format(s[0], s[1]))
+                        print("INSERT INTO facilities (fcode, common_name) VALUES ({}, '{}');".format(s[0], s[1]))
 
 def import_users():
         with open("users.csv") as f:
@@ -26,6 +26,6 @@ def import_assets():
                         print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT assets_pk FROM assets WHERE asset_tag='{}'), (SELECT facilities_pk FROM facilities WHERE fcode={}), {});".format(s[0], s[2], s[3]))
 if __name__ == "__main__":
         import_facilities()
-        import_assets()
+        #simport_assets()
         import_users()
         #import_transfers()
