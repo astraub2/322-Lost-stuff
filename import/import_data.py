@@ -22,3 +22,8 @@ def import_assets():
 		for s in assets:
 			print("INSERT INTO assets (asset_tag, alt_description, disposed_dt) VALUES ({}, {}, {}, {});".format(s[0], s[1], s[4]))
 			print("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ((SELECT asset_pk FROM assets WHERE asset_tag={}), (SELECT facilities_pk FROM facilities WHERE fcode={}), {});".format(s[0], s[2], s[3]))
+if __name__ == "__main__":
+	import_facilities()
+	import_assets()
+	import_users()
+	#import_transfers()
