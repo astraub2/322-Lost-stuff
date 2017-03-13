@@ -12,10 +12,11 @@ def import_users():
         with open("users.csv") as f:
                 users = csv.reader(f, skipinitialspace=True)
                 next(users)
+                print('INSERT INTO roles (role_name) VALUES ("Logistics Officer")')
+                print('INSERT INTO roles (role_name) VALUES ("Facilities Officer")')
                 for s in users:
-                        print("you didnt do this")
-                        #print("INSERT INTO users (username, password, active) VALUES ({}, {}, {});".format(s[0], s[1], s[3]))
-                        #print("INSERT INTO roles( (user_fk, role_fk) VALUES ((SELECT user_pk FROM users WHERE username={}), (SELECT role_pk FROM roles WHERE role_name={}))".format(s[0], s[2]))
+                        print("INSERT INTO users (username, password, role_fk, active) VALUES ({}, {},(SELECT role_pk FROM roles WHERE role_name='{}'), {});".format(s[0], s[1],s[2], s[3]))
+                
 def import_assets():
         with open("assets.csv") as f:
                 assets = csv.reader(f, skipinitialspace=True)
