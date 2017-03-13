@@ -39,7 +39,7 @@ def import_transfers():
 		transfers = csv.reader(f, skipinitialspace=True)
 		next(transfers)
 		for s in transfers:
-			print("""INSERT INTO transfer (requestor_fk, request_dt, approver_fk, approval_dt, source_fk, destination_fk, asset_fk) VALUES 
+			print("""INSERT INTO transfer (requestor_fk, request_dt, approver_fk, approve_dt, source_fk, destination_fk, asset_fk) VALUES 
 				((SELECT user_pk FROM users WHERE username='{}'), '{}', (SELECT user_pk FROM users WHERE username='{}'), 
 				'{}', (SELECT facilities_pk FROM facilities WHERE fcode='{}'), 
 				(SELECT facilities_pk FROM facilities WHERE fcode='{}'), (SELECT assets_pk FROM assets WHERE asset_tag='{}'));
