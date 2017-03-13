@@ -6,7 +6,7 @@ def import_facilities():
                 facilities = csv.reader(f, skipinitialspace=True)
                 next(facilities)
                 for s in facilities:
-                        print("INSERT INTO facilities (facility_fcode, facility_common_name) VALUES ({}, {});".format(s[0], s[1]))
+                        print("INSERT INTO facilities (fcode, common_name) VALUES ({}, {});".format(s[0], s[1]))
 
 def import_users():
         with open("users.csv") as f:
