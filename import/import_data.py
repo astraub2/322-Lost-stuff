@@ -15,7 +15,7 @@ def import_users():
                 print('INSERT INTO roles (role_name) VALUES ("Logistics Officer")')
                 print('INSERT INTO roles (role_name) VALUES ("Facilities Officer")')
                 for s in users:
-                        print("INSERT INTO users (username, password, role_fk, active) VALUES ({}, {},(SELECT role_pk FROM roles WHERE role_name='{}'), {});".format(s[0], s[1],s[2], s[3]))
+                        print("INSERT INTO users (username, password, role_fk, active) VALUES ('{}', '{}',(SELECT role_pk FROM roles WHERE role_name='{}'), '{}');".format(s[0], s[1],s[2], s[3]))
                 
 def import_assets():
         with open("assets.csv") as f:
