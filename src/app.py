@@ -1,5 +1,6 @@
 from flask import Flask, make_response, render_template, request, session, redirect, url_for
 import psycopg2
+import json
 from config import dbname, dbhost, dbport, secret_key
 
 app = Flask(__name__)
@@ -10,13 +11,13 @@ app.config["SECRET_KEY"] = secret_key
 @app.route('/activate_user', methods = ['POST',])
 def activate_user():
     if request.method == 'POST':
-        
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         username = request.form['username']
         password = request.form['password']
         role = request.form['role']
         cur.execute('SELECT username FROM users WHERE username=%s;', (username,))
+
         try:
             result = cur.fetchone()
         except ProgrammingError:
@@ -26,7 +27,7 @@ def activate_user():
 
         if result == None:
             cur.execute('INSERT INTO users (username, password) VALUES (%s, %s);', (username, password))
-                  conn.commit()
+            conn.commit()
             cur.close()
             conn.close()
             returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
@@ -41,7 +42,7 @@ def activate_user():
             returnValue = ('User %s Activated, new password: %s'%(username, password))
             dat['result'] = returnValue
             data = json.dumps(dat)
-            return "data"
+            return data
 
 @app.route('/revoke_user', methods = ['POST',])
 def revoke_user():
