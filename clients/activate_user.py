@@ -28,7 +28,6 @@ def main():
     # Make the resquest
     location = sys.argv[1] + 'activate_user'
     req = Request(location, data.encode('ascii'), method='POST')
-    #print(req)
     res = urlopen(req)
     
     # Parse the response
