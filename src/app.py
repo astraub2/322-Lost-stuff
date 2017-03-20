@@ -11,37 +11,37 @@ app.config["SECRET_KEY"] = secret_key
 def activate_user():
     if request.method == 'POST':
         
-        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-        cur = conn.cursor()
-        username = request.form['username']
-        password = request.form['password']
-        role = request.form['role']
-        cur.execute('SELECT username FROM users WHERE username=%s;', (username,))
-        try:
-            result = cur.fetchone()
-        except ProgrammingError:
-            result = None
-
-        dat = dict()
-
-        if result == None:
-            cur.execute('INSERT INTO users (username, password) VALUES (%s, %s);', (username, password))
-                  conn.commit()
-            cur.close()
-            conn.close()
-            returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
-            dat['result'] = returnValue
-            data = json.dumps(dat)
-            return data
-        else:
-            cur.execute('UPDATE users SET password=%s, active=%s WHERE username=%s;', (password, True, username))
-            conn.commit()
-            cur.close()
-            conn.close()
-            returnValue = ('User %s Activated, new password: %s'%(username, password))
-            dat['result'] = returnValue
-            data = json.dumps(dat)
-            return data
+##        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+##        cur = conn.cursor()
+##        username = request.form['username']
+##        password = request.form['password']
+##        role = request.form['role']
+##        cur.execute('SELECT username FROM users WHERE username=%s;', (username,))
+##        try:
+##            result = cur.fetchone()
+##        except ProgrammingError:
+##            result = None
+##
+##        dat = dict()
+##
+##        if result == None:
+##            cur.execute('INSERT INTO users (username, password) VALUES (%s, %s);', (username, password))
+##                  conn.commit()
+##            cur.close()
+##            conn.close()
+##            returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
+##            dat['result'] = returnValue
+##            data = json.dumps(dat)
+##            return data
+##        else:
+##            cur.execute('UPDATE users SET password=%s, active=%s WHERE username=%s;', (password, True, username))
+##            conn.commit()
+##            cur.close()
+##            conn.close()
+##            returnValue = ('User %s Activated, new password: %s'%(username, password))
+##            dat['result'] = returnValue
+##            data = json.dumps(dat)
+            return "data"
 
 @app.route('/revoke_user', methods = ['POST',])
 def revoke_user():
