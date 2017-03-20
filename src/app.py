@@ -41,7 +41,7 @@ def activate_user():
             returnValue = ('User %s Activated, new password: %s'%(username, password))
             dat['result'] = returnValue
             data = json.dumps(dat)
-            return "data"
+            return data
 
 @app.route('/revoke_user', methods = ['POST',])
 def revoke_user():
