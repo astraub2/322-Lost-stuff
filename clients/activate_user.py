@@ -31,10 +31,10 @@ def main():
     res = urlopen(req)
     
     # Parse the response
-    resp = json.loads(res.read().decode('ascii'))
+    #resp = json.loads(res.read().decode('ascii'))
     
     # Print the result code
-    print("Call to LOST returned: %s"%resp['result'])
+    #print("Call to LOST returned: %s"%resp['result'])
 
 if __name__=='__main__':
     main()

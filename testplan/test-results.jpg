@@ -1,0 +1,39 @@
+test results
+
+Setup:
+
+Preflight runs with no errors, preflight.sh creates the tables and copies files correctly.  Apache starts with no errors, redirects to the login page.
+
+Step 1:
+I had to manually enter information for roles and users into the database.  Create users are not functional at this point.
+
+Step 2:
+Facilites created with no errors.  Will not create facilities with repeated name, or fcode.
+
+Step 3:
+creates assets correctly.  Will not create the same asset twice.
+
+Step 4:
+Dispose asset rejects access to facilities officer correctly.  Disposes assets correctly
+
+*Step 5:  Asset report works, but I think it should only display if the asset is there on the day specified.  The assets appear if they were there before or on the date specified.  So if I dispose an asset, it still appears if I select a date after the disposal date.  Meaning an asset that is not at a facility anymore appears in the asset report for that date.
+
+*Step 6:
+Properly rejects access to facilities officers.
+Makes requests, but you can make a request for an asset to be transfered from a facility it was not located at.  Disposed assets can still be transferred.  
+
+*Step 7:
+Properly rejects access to Logistics officers.
+Properly confirms and denies requests.
+There should be a link on the dashboard for pending transfer requests.  Transfers are a little hard to read, might want to have less numbers.
+
+*Step 8:
+Properly rejects access to facilities officers.
+Updated requests dissapear.
+There should be a link on the dashboard for pending request updates.
+
+Step 9:
+Transfer report not neccessary here, but the link is not broken.
+
+
+
