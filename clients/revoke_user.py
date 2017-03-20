@@ -14,7 +14,7 @@ def main():
     
     # Prep the arguments blob
     args = dict()
-     args['username']  = sys.argv[2]
+    args['username']  = sys.argv[2]
 
     # Print a message to let the user know what is being tried
     print("Revoking user access for: %s"%args['username'])

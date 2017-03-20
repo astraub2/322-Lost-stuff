@@ -17,7 +17,7 @@ def main():
     args['password']  = sys.argv[3]
     if sys.argv[4] == 'facofc':
         args['role'] = 'Facilities Officer'
-    else if sys.argv[4] == 'logofc':
+    elif sys.argv[4] == 'logofc':
         args['role'] = 'Logistics Officer'
      # Print a message to let the user know what is being tried
     print("Activating user: %s"%args['mytext'])
