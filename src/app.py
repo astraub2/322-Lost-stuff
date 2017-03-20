@@ -10,9 +10,7 @@ app.config["SECRET_KEY"] = secret_key
 
 @app.route('/activate_user', methods = ['POST',])
 def activate_user():
-    print('hit')
     if request.method == 'POST':
-        print('hit')
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         username = request.form['username']
@@ -63,7 +61,7 @@ def revoke_user():
             conn.close()
             returnValue = ('User %s not found'%username)
             dat['result'] = returnValue
-            #data = json.dumps(dat).encode('ascii')
+            data = json.dumps(dat).encode('ascii')
             return data
 
         else:
@@ -74,7 +72,7 @@ def revoke_user():
             conn.close()
             returnValue = ('User Access for %s revoked'%username)
             dat['result'] = returnValue
-            #data = json.dumps(dat).encode('ascii')
+            data = json.dumps(dat).encode('ascii')
             return data
 
 
