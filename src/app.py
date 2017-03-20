@@ -1,5 +1,6 @@
 from flask import Flask, make_response, render_template, request, session, redirect, url_for
 import psycopg2
+import json
 from config import dbname, dbhost, dbport, secret_key
 
 app = Flask(__name__)
