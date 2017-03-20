@@ -31,9 +31,9 @@ def activate_user():
             cur.close()
             conn.close()
             returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
-            dat['result'] = returnValue
-            data = json.dumps(dat)
-            return data
+            #dat['result'] = returnValue
+            #data = json.dumps(dat)
+            return "data"
         else:
             cur.execute('UPDATE users SET password=%s, active=%s WHERE username=%s;', (password, True, username))
             conn.commit()
