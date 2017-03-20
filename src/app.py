@@ -10,6 +10,7 @@ app.config["SECRET_KEY"] = secret_key
 
 @app.route('/activate_user', methods = ['POST',])
 def activate_user():
+    print('hit')
     if request.method == 'POST':
         print('hit')
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
@@ -18,6 +19,7 @@ def activate_user():
         password = request.form['password']
         role = request.form['role']
         cur.execute('SELECT username FROM users WHERE username=%s;', (username,))
+
         try:
             result = cur.fetchone()
         except ProgrammingError:
