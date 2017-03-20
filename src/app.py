@@ -26,7 +26,7 @@ def activate_user():
 
         if result == None:
             cur.execute('INSERT INTO users (username, password) VALUES (%s, %s);', (username, password))
-                  conn.commit()
+            conn.commit()
             cur.close()
             conn.close()
             returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
