@@ -26,14 +26,31 @@ def activate_user():
         dat = dict()
 
         if result == None:
-            cur.execute('INSERT INTO users (username, password, role_name) VALUES (%s, %s, %s);', (username, password, role))
-            conn.commit()
-            cur.close()
-            conn.close()
-            returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
-            dat['result'] = returnValue
-            data = json.dumps(dat)
-            return data
+            cur.execute('SELECT role_name FROM roles WHERE role_name=%s;', (role,))
+            try:
+                res = cur.fetchone()
+            except ProgrammingError:
+                res = None
+            if res == None:
+                cur.execute('INSERT INTO roles (role_name) VALUES(%s);',(roles,))
+                cur.execute('INSERT INTO users (username, password, role_name) VALUES (%s, %s,(SELECT role_pk FROM roles WHERE role_name=%s));', (username, password, role))
+                conn.commit() 
+                cur.close()
+                conn.close()
+                returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
+                dat['result'] = returnValue
+                data = json.dumps(dat)
+                return data
+            else:
+                cur.execute('INSERT INTO users (username, password, role_name) VALUES (%s, %s, (SELECT role_pk FROM roles WHERE role_name=%s));', (username, password, role))
+                conn.commit() 
+                cur.close()
+                conn.close()
+                returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
+                dat['result'] = returnValue
+                data = json.dumps(dat)
+                return data
+            
         else:
             cur.execute('UPDATE users SET password=%s, active=%s WHERE username=%s;', (password, True, username))
             conn.commit()
