@@ -20,7 +20,7 @@ def main():
     elif sys.argv[4] == 'logofc':
         args['role'] = 'Logistics Officer'
      # Print a message to let the user know what is being tried
-    print("Activating user: %s"%args['mytext'])
+    print("Activating user: %s"%args['username'])
 
     # Setup the data to send
     data = urlencode(args)
