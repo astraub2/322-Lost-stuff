@@ -23,31 +23,8 @@ def revoke_user():
     if request.method == 'POST':
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
-        username = request.form['username']
-        cur.execute('SELECT username FROM users WHERE username=%s;', (username,))
-        try:
-            result = cur.fetchone()
-        except ProgrammingError:
-            result = None
-        dat = dict()
-        if result == None:
-            cur.close()
-            conn.close()
-            returnValue = ('User %s not found'%username)
-            dat['result'] = returnValue
-            #data = json.dumps(dat).encode('ascii')
-            return data
-
-        else:
-
-            cur.execute('UPDATE users SET active=%s WHERE username=%s;', (False, username))
-            conn.commit()
-            cur.close()
-            conn.close()
-            returnValue = ('User Access for %s revoked'%username)
-            dat['result'] = returnValue
-            #data = json.dumps(dat).encode('ascii')
-            return data
+        
+            return "data"
 
 
 @app.route('/')
