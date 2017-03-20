@@ -32,7 +32,7 @@ def activate_user():
             except ProgrammingError:
                 res = None
             if res == None:
-                cur.execute('INSERT INTO roles (role_name) VALUES(%s);',(roles,))
+                cur.execute('INSERT INTO roles (role_name) VALUES(%s);',(role,))
                 #cur.execute('INSERT INTO users (username, password, role_name) VALUES (%s, %s,(SELECT role_pk FROM roles WHERE role_name=%s));', (username, password, role))
                 conn.commit() 
                 cur.close()
