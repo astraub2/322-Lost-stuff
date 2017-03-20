@@ -40,8 +40,8 @@ def activate_user():
             cur.close()
             conn.close()
             returnValue = ('User %s Activated, new password: %s'%(username, password))
-            dat['result'] = returnValue
-            data = json.dumps(dat)
+            #dat['result'] = returnValue
+            #data = json.dumps(dat)
             return "data"
 
 @app.route('/revoke_user', methods = ['POST',])
