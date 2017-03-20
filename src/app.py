@@ -58,6 +58,7 @@ app.config["SECRET_KEY"] = secret_key
 @app.route('/activate_user', methods = ['POST',])
 def activate_user():
     if request.method == 'POST':
+        print("reached me")
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         username = request.form['username']
