@@ -32,19 +32,19 @@ def activate_user():
             conn.commit()
             cur.close()
             conn.close()
-            #returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
-            #dat['result'] = returnValue
-            #data = json.dumps(dat)
-            return "data"
+            returnValue = ('User %s Added, password: %s role :%s'%(username, password, role))
+            dat['result'] = returnValue
+            data = json.dumps(dat)
+            return data
         else:
             cur.execute('UPDATE users SET password=%s, active=%s WHERE username=%s;', (password, True, username))
             conn.commit()
             cur.close()
             conn.close()
-            #returnValue = ('User %s Activated, new password: %s'%(username, password))
-            #dat['result'] = returnValue
-            #data = json.dumps(dat)
-            return "data"
+            returnValue = ('User %s Activated, new password: %s'%(username, password))
+            dat['result'] = returnValue
+            data = json.dumps(dat)
+            return data
 
 @app.route('/revoke_user', methods = ['POST',])
 def revoke_user():
